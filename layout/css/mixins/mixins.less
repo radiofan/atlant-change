@@ -1,0 +1,89 @@
+// Размер шрифта и line-height
+.f(@fs, @lh) {
+	font-size: @fs;
+	line-height: @lh;
+}
+// Быстрый квадрат
+.sq(@size) {
+	height: @size*1px;
+	width: @size*1px;
+}
+// базывые параметры для before и after
+.bf() {
+	position: absolute;
+	content: ' ';
+}
+// Цвет placeholder
+.ph(@color) {
+	&::-webkit-input-placeholder {
+		color: @color
+	}
+	&:-moz-placeholder {
+		color: @color
+	}
+	&::-moz-placeholder {
+		color: @color
+	}
+	&:-ms-input-placeholder {
+		color: @color
+	}
+}
+// Подключение шрифтов
+.font(@family, @filename: @family, @weight: normal, @style: normal) {
+	@font-face {
+		font-family: @family;
+		src:url('../fonts/@{filename}.eot');
+		src:url('../fonts/@{filename}.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/@{filename}.woff') format('woff'),
+		url('../fonts/@{filename}.ttf') format('truetype');
+		font-weight: @weight;
+		font-style: @style;
+	}
+}
+// Transition
+.trs(@time: 0.3, @type: ease-in, @for: all) {
+	-webkit-transition: @for @type @time*1s;
+	-moz-transition: @for @type @time*1s;
+	-o-transition: @for @type @time*1s;
+	transition: @for @type @time*1s;
+}
+// Черно-белое изображение
+.gr() {
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+// Цветное изображение
+.grh() {
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
+	filter: grayscale(0%);
+	filter: none;
+}
+// Градиент
+.gradient(@from: #000, @to: #fff) {
+	background-color: @from;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
+	background-image: -webkit-linear-gradient(top, @from, @to);
+	background-image: -moz-linear-gradient(top, @from, @to);
+	background-image: -o-linear-gradient(top, @from, @to);
+	background-image: linear-gradient(to bottom, @from, @to);
+}
+// Translate
+.trft(@x, @y: @x) {
+	transform: translate(@x * 1%, @y * 1%);
+}
+// Фоновое изображение
+.bgi(@image, @type: jpg) {
+	background-image: url('../img/@{image}.@{type}');
+}
+//боковые отступы
+.sideGap{
+	margin-left:var(--side-gap);
+	margin-right:var(--side-gap);
+}

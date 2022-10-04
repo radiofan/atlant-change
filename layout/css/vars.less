@@ -1,0 +1,126 @@
+
+@cYellow:	#EAC44A;
+@cCyan:		#368289;
+@cBlack:	#1A1A1A;
+@cGray:		#9FA7AB;
+@cNotWhite:	#F5F9FF;
+@cWhite:	#FFFFFF;
+
+
+@fs48:	48px;
+@lh48:	59px;
+
+@fs40:	40px;
+@lh40:	49px;
+
+@fs24:	24px;
+@lh24:	29px;
+
+@fs20:	20px;
+@lh20:	24px;
+
+@fs16:	16px;
+@lh16:	20px;
+
+
+@xxl_s:1920;
+@xl_s:1200;
+@lg_s:992;
+@md_s:768;
+@sm_s:576;
+@xs_s:375;
+
+
+@side_gap: 150px;
+
+
+// Адаптив
+.moreR(@size, @rules) {
+	@media screen and (min-width: (@size+0.53)*1px) {
+		@rules();
+	}
+}
+.r(@min_size, @max_size, @rules) {
+	@media screen and (min-width: (@min_size+0.53)*1px) and (max-width: @max_size*1px) {
+		@rules();
+	}
+}
+.lessR(@size, @rules) {
+	@media screen and (max-width: @size*1px) {
+		@rules();
+	}
+}
+
+.moreXL(@rules){
+	.moreR(@xxl_s, @rules);
+}
+.xl(@rules){
+	.r(@xl_s, @xxl_s, @rules);
+}
+.lessXL(@rules){
+	.lessR(@xl_s, @rules);
+}
+
+.moreLG(@rules) {
+	@media screen and (min-width: 1200.53px){
+		@rules();
+	}
+}
+.lg(@rules) {
+	@media screen and (min-width: 992.53px) and (max-width: 1200px){
+		@rules();
+	}
+}
+.lessLG(@rules) {
+	@media screen and (max-width: 992px){
+		@rules();
+	}
+}
+
+.moreMD(@rules) {
+	@media screen and (min-width: 992.53px){
+		@rules();
+	}
+}
+.md(@rules) {
+	@media screen and (min-width: 768.53px) and (max-width: 992px){
+		@rules();
+	}
+}
+.lessMD(@rules) {
+	@media screen and (max-width: 768px){
+		@rules();
+	}
+}
+
+.moreSM(@rules) {
+	@media screen and (min-width: 768.53px){
+		@rules();
+	}
+}
+.sm(@rules) {
+	@media screen and (min-width: 576.53px) and (max-width: 768px){
+		@rules();
+	}
+}
+.lessSM(@rules) {
+	@media screen and (max-width: 576px){
+		@rules();
+	}
+}
+
+.moreXS(@rules) {
+	@media screen and (min-width: 576.53px){
+		@rules();
+	}
+}
+.xs(@rules) {
+	@media screen and (min-width: 375.53px) and (max-width: 576px){
+		@rules();
+	}
+}
+.lessXS(@rules) {
+	@media screen and (max-width: 375px){
+		@rules();
+	}
+}
