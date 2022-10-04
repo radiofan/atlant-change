@@ -32,16 +32,16 @@
 .font(@family, @filename: @family, @weight: normal, @style: normal) {
 	@font-face {
 		font-family: @family;
-		src:url('../fonts/@{filename}.eot');
-		src:url('../fonts/@{filename}.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/@{filename}.woff') format('woff'),
-		url('../fonts/@{filename}.ttf') format('truetype');
+		src:url('./assets/@{filename}.eot');
+		src:url('./assets/@{filename}.eot?#iefix') format('embedded-opentype'),
+		url('./assets/@{filename}.woff') format('woff'),
+		url('./assets/@{filename}.ttf') format('truetype');
 		font-weight: @weight;
 		font-style: @style;
 	}
 }
 // Transition
-.trs(@time: 0.3, @type: ease-in, @for: all) {
+.trs(@for: all, @time: 0.3, @type: ease-in) {
 	-webkit-transition: @for @type @time*1s;
 	-moz-transition: @for @type @time*1s;
 	-o-transition: @for @type @time*1s;
@@ -83,7 +83,11 @@
 	background-image: url('../img/@{image}.@{type}');
 }
 //боковые отступы
-.sideGap{
-	margin-left:var(--side-gap);
-	margin-right:var(--side-gap);
+.padding-lr(@padding){
+	padding-left:@padding;
+	padding-right:@padding;
+}
+.margin-lr(@margin){
+	margin-left:@margin;
+	margin-right:@margin;
 }

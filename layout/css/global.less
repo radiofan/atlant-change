@@ -1,4 +1,4 @@
-.body{
+body{
 	background-color: @cWhite;
 }
 
@@ -8,4 +8,25 @@
 
 :root{
 	--side-gap: @side_gap;
+
+	--m16: @m16;
+	--m20: @m20;
+	--m50: @m50;
+	--m56: @m56;
+	--m100: @m100;
+}
+
+.container{
+	position:relative;
+	box-sizing:border-box;
+	.padding-lr(var(--side-gap));
+	width:100%;
+}
+
+.icon-online{
+	&:before{
+		content:'\25CF';
+		color:@cCyan;
+		font-size: 20px;
+	}
 }
