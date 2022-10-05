@@ -74,6 +74,20 @@
 	background-image: -o-linear-gradient(top, @from, @to);
 	background-image: linear-gradient(to bottom, @from, @to);
 }
+.transform-origin(@x, @y){
+	-webkit-transform-origin: @x @y;
+	-moz-transform-origin: @x @y;
+	-o-transform-origin: @x @y;
+	-ms-transform-origin: @x @y;
+	transform-origin: @x @y;
+}
+.transform(@tans){
+	-moz-transform: @tans; // Для Firefox
+	-ms-transform: @tans; // Для IE
+	-webkit-transform: @tans; // Для Safari, Chrome, iOS
+	-o-transform: @tans; // Для Opera
+	transform:@tans;
+}
 // Translate
 .trft(@x, @y: @x) {
 	transform: translate(@x * 1%, @y * 1%);
@@ -90,4 +104,12 @@
 .margin-lr(@margin){
 	margin-left:@margin;
 	margin-right:@margin;
+}
+.padding-tp(@padding){
+	padding-top:@padding;
+	padding-bottom:@padding;
+}
+.margin-tp(@margin){
+	margin-top:@margin;
+	margin-bottom:@margin;
 }

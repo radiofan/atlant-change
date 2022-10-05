@@ -1,19 +1,44 @@
-body{
-	background-color: @cWhite;
-}
-
-.not-white-back{
-	background-color: @cNotWhite;
-}
-
 :root{
-	--side-gap: @side_gap;
+	--side-gap:150px;
 
-	--m16: @m16;
-	--m20: @m20;
-	--m50: @m50;
-	--m56: @m56;
-	--m100: @m100;
+	--top-menu-height:100px;
+
+	--m8:@m8;
+	--m16:@m16;
+	--m20:@m20;
+	--m30:@m30;
+	--m40:@m40;
+	--m50:@m50;
+	--m56:@m56;
+	--m85:@m85;
+	--m100:@m100;
+
+	@media @xxl{
+		--side-gap:100px;
+	}
+	@media @xl{
+		--side-gap:75px;
+	}
+	@media @lg{
+		--side-gap:50px;
+	}
+	@media @lessLG{
+		--side-gap:20px;
+	}
+	@media @lessMD{
+		--top-menu-height:70px;
+	}
+}
+
+body{
+	background-color:@cWhite;
+	padding-top:var(--top-menu-height);
+}
+
+header{
+	position:fixed;
+	width:100%;
+	top:0;
 }
 
 .container{
@@ -27,6 +52,18 @@ body{
 	&:before{
 		content:'\25CF';
 		color:@cCyan;
-		font-size: 20px;
+		font-size:20px;
 	}
+}
+
+.icon-bar{
+	width:100%;
+	height:0;
+	border-top:2px solid @cGray;
+	box-sizing:border-box;
+	display:block;
+}
+
+.not-white-back{
+	background-color:@cNotWhite;
 }

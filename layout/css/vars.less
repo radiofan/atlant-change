@@ -27,22 +27,31 @@
 //отступы
 
 
-@side_gap: 150px;
+@m8:	8px;
 @m16:	16px;
 @m20:	20px;
+@m30:	30px;
+@m40:	40px;
 @m50:	50px;
 @m56:	56px;
+@m85:	85px;
 @m100:	100px;
 
 
 // Адаптив
-@xxl_s:1920;
+@xxxl_s:1920;
+@xxl_s:1500;
 @xl_s:1200;
 @lg_s:992;
-@md_s:768;
+@md_s:850;
 @sm_s:576;
 @xs_s:375;
 
+@lessXXXL	: ~"screen and (max-width: "+(@xxxl_s - 0.6)+"px)";
+
+@moreXXL	: ~"screen and (min-width: "+@xxxl_s+"px)";
+@xxl		: ~"screen and (min-width: "+@xxl_s+"px) and (max-width: "+(@xxxl_s - 0.6)+"px)";
+@lessXXL	: ~"screen and (max-width: "+(@xxl_s - 0.6)+"px)";
 
 @moreXL	: ~"screen and (min-width: "+@xxl_s+"px)";
 @xl		: ~"screen and (min-width: "+@xl_s+"px) and (max-width: "+(@xxl_s - 0.6)+"px)";

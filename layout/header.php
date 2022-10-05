@@ -24,7 +24,8 @@
 		<nav class="navbar navbar-top h6">
 			<div class="navbar-top__logo">
 				<a href="javascript:void(0)">
-					<img src="/assets/logo.png" alt="Лого">
+					<img class="navbar-top__logo__img navbar-top__logo__img--desktop" src="/assets/logo.png" alt="Лого">
+					<img class="navbar-top__logo__img navbar-top__logo__img--mobile" src="/assets/logo-mobile.png" alt="Лого">
 				</a>
 			</div>
 			<div class="collapse navbar-top__collapse" id="menu-top">
@@ -54,7 +55,7 @@
 					</a>
 				</div>
 			</div>
-			<button type="button" class="navbar-top__toggle collapsed" data-toggle="collapse" data-target="#topnav" aria-expanded="false">
+			<button type="button" class="navbar-top__toggle collapsed" data-toggle="collapse" data-target="#menu-top" aria-expanded="false">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
