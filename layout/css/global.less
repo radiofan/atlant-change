@@ -4,6 +4,8 @@
 	--top-menu-height:100px;
 
 	--m8:@m8;
+	--m10:@m10;
+	--m12:@m12;
 	--m16:@m16;
 	--m20:@m20;
 	--m30:@m30;
@@ -58,6 +60,24 @@ header{
 	position:relative;
 	.padding-lr(var(--side-gap));
 	width:100%;
+}
+
+table{
+	width:100%;
+	text-align:left;
+	border-collapse: collapse;
+	
+	td{
+		padding: var(--m12) var(--m20);
+	}
+	
+	th{
+		padding: 0 var(--m20) var(--m12);
+	}
+	
+	tr{
+		border-bottom: 1px solid @cBlack;
+	}
 }
 
 .icon-online{

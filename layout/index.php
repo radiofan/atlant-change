@@ -29,6 +29,35 @@
 						<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
 					</div>
 				</form>
+				<div class="index-calculator-block__table-block">
+					<table>
+						<thead>
+							<tr>
+								<th>Валюта</th>
+								<th>Покупка</th>
+								<th>Продажа</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Bitcoin</td>
+								<td>1308953.47 ₽</td>
+								<td>1186621.37 ₽</td>
+							</tr>
+							<tr>
+								<td>Ethereum</td>
+								<td>66768.66 ₽</td>
+								<td>66768.66 ₽</td>
+							</tr>
+							<tr>
+								<td>Tether (USDT)</td>
+								<td>67.9302 ₽</td>
+								<td>62.1242 ₽</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="index-calculator-block__table-addition">Обновлено 08.02.22</div>
+				</div>
 			</div>
 		</div>
 		
