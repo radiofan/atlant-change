@@ -10,8 +10,10 @@
 	--m40:@m40;
 	--m50:@m50;
 	--m56:@m56;
+	--m80:@m80;
 	--m85:@m85;
 	--m100:@m100;
+	--m130:@m130;
 
 	@media @xxl{
 		--side-gap:100px;
@@ -33,6 +35,10 @@
 body{
 	background-color:@cWhite;
 	padding-top:var(--top-menu-height);
+	
+	.fontMontserrat();
+	font-weight: 400;
+	.f(@fs20, @lh20);
 }
 
 header{

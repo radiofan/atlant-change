@@ -2,6 +2,19 @@
 <?php require_once 'header.php'; ?>
 	<section class="index-calculator-block">
 		
+		<div class="index-calculator-block__container">
+			<div class="index-calculator-block__header-block">
+				<div class="index-calculator-block__header">
+					<h1>Мультивалютный обменый сервис</h1>
+				</div>
+				<div class="index-calculator-block__description">
+					Быстрый, защищенный и анонимный
+				</div>
+			</div>
+			<div class="index-calculator-block__calcultor-block">
+				
+			</div>
+		</div>
 		
 		
 		<svg class="index-calculator-block__wave" viewBox="0 0 1920 266" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
