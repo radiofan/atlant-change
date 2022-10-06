@@ -32,10 +32,18 @@
 	&__calcultor-block{
 		background: radial-gradient(112.8% 323.53% at 0% 0.03%, rgba(54, 130, 137, 0.36) 0%, rgba(54, 130, 137, 0) 100%);
 		backdrop-filter: blur(8.5px);
-		width: 575px;//todo
-		height: 575px;
+		//width: 575px;//todo
+		//height: 575px;
+		max-width:1346px;
+		width:100%;
 		padding: var(--m130) var(--m30);
-		box-sizing:border-box;
+		
+		display:flex;
+		flex-wrap:wrap;
+		
+		& > *{
+			flex-grow:1;
+		}
 	}
 	
 	

@@ -12,7 +12,23 @@
 				</div>
 			</div>
 			<div class="index-calculator-block__calcultor-block">
-				
+				<form class="calculator-form">
+					<div class="select">
+						<select name="type" class="calculator-form__type-select">
+							<option value="sale">Продать</option>
+						</select>
+					</div>
+					<div class="select">
+						<select name="currency" class="calculator-form__currency-select">
+							<option value="ethereum">Ethereum</option>
+						</select>
+					</div>
+					<input type="text" name="value" class="calculator-form__value-input" value="100">
+					<div class="calculator-form__submit-section h5">
+						<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0 ₽</span></div>
+						<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
+					</div>
+				</form>
 			</div>
 		</div>
 		

@@ -23,3 +23,80 @@ a{
 		}
 	}
 }
+
+.select{
+	position:relative;
+
+	&::before{
+		content: "\f347";//todo
+		position:absolute;
+		color:@cGray;
+		width:50px;
+		height:50px;
+		cursor:pointer;
+		text-align:center;
+		right:0;
+		top:0;
+		font-size:25px;
+	}
+}
+
+select, input[type=text], input[type=number], input[type=email], input[type=password]{
+	width: 100%;
+	border: 1px solid @cBlack;
+	border-radius:0;
+	height:50px;
+	background-color:transparent;
+	padding-left:var(--m20);
+	outline:none;
+	position:relative;
+	
+	&:focus{
+		border: 3px solid @cBlack;
+		padding-left:calc(var(--m20) - 2px);
+	}
+	
+	&:disabled{
+		border-color: @cGray;
+		color: @cGray;
+		cursor: not-allowed;
+	}
+}
+
+select{
+	appearance: none;
+	cursor:pointer;
+	
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+.btn{
+	cursor:pointer;
+	border:0;
+	padding: 13px 71px;
+	height: 50px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+	&:disabled{
+		cursor: not-allowed;
+	}
+	
+	&-submit{
+		background-color:@cYellow;
+		.trs(background-color, 0.1);
+		
+		&:disabled{
+			background-color:lighten(@cYellow, 10%);
+		}
+		
+		&:hover{
+			background-color:lighten(@cYellow, 10%);
+		}
+
+		&:active{
+			background-color:@cYellow;
+		}
+	}
+}

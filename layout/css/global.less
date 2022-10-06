@@ -7,6 +7,7 @@
 	--m16:@m16;
 	--m20:@m20;
 	--m30:@m30;
+	--m36:@m36;
 	--m40:@m40;
 	--m50:@m50;
 	--m56:@m56;
@@ -31,6 +32,11 @@
 		--top-menu-height:70px;
 	}
 }
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
 
 body{
 	background-color:@cWhite;
@@ -50,7 +56,6 @@ header{
 
 .container{
 	position:relative;
-	box-sizing:border-box;
 	.padding-lr(var(--side-gap));
 	width:100%;
 }
@@ -67,10 +72,49 @@ header{
 	width:100%;
 	height:0;
 	border-top:2px solid @cGray;
-	box-sizing:border-box;
 	display:block;
 }
 
-.not-white-back{
-	background-color:@cNotWhite;
+.bg-color{
+
+	&--yellow{
+		background-color:@cYellow;
+	}
+	&--cyan{
+		background-color:@cCyan;
+	}
+	&--black{
+		background-color:@cBlack;
+	}
+	&--gray{
+		background-color:@cGray;
+	}
+	&--not-white{
+		background-color:@cNotWhite;
+	}
+	&--white{
+		background-color:@cWhite;
+	}
+}
+
+.color{
+
+	&--yellow{
+		color:@cYellow;
+	}
+	&--cyan{
+		color:@cCyan;
+	}
+	&--black{
+		color:@cBlack;
+	}
+	&--gray{
+		color:@cGray;
+	}
+	&--not-white{
+		color:@cNotWhite;
+	}
+	&--white{
+		color:@cWhite;
+	}
 }
