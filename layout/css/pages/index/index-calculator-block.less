@@ -1,29 +1,49 @@
 
 .index-calculator-block{
 	background-color:@cNotWhite;
-	height: 793px; //todo
+	height: 793px;
 	position:relative;
+
+	@media @lessMD{
+		height: auto;
+	}
 	
 	&__container{
 		display:flex;
 		flex-direction:column;
 		align-items:center;
-		height:900px;
 		background-color:transparent;
 		z-index:3;
 		overflow-x: clip;
+
+		@media @lessMD{
+			margin-bottom: var(--m40);
+		}
 	}
 	
 	&__header-block{
 		.margin-tp(var(--m80));
+		
+		@media @lessMD{
+			.margin-tp(var(--m40));
+		}
 	}
 	
 	&__header{
 		margin-bottom:var(--m20);
+		
+		h1,.h1{
+			@media @lessMD{
+				.f(@fs32, @lh32);
+			}
+		}
 	}
 	
 	&__description{
 		text-align:center;
+		@media @lessMD{
+			text-align:left;
+		}
 	}
 	
 	&__wrap{
@@ -39,8 +59,17 @@
 		padding: var(--m130) var(--m30);
 		
 		display:flex;
-		flex-wrap:wrap;
+		//flex-wrap:wrap;
 		column-gap:var(--m30);
+		row-gap:68px;
+
+		@media @lessXL{
+			padding: var(--m100) var(--m20);
+		}
+		
+		@media @lessMD{
+			flex-direction:column;
+		}
 		
 		& > *{
 			flex-grow:1;
@@ -56,6 +85,11 @@
 		top: -107px;
 		left: -118px;
 		
+		@media @lessMD{
+			top: -3%;
+			left: 31.7%;
+		}
+		
 		.figure{
 			fill:@cCyan;
 			filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
@@ -68,7 +102,15 @@
 		position: absolute;
 		z-index:-1;
 		bottom: -200px;
-		right: -150px;
+		
+		@media @md, @moreMD{
+			right:-150px;
+		}
+
+		@media @lessMD{
+			bottom: 0.8%;
+			left: -295px;
+		}
 
 		.figure{
 			stroke:@cCyan;
@@ -76,10 +118,23 @@
 		}
 	}
 	
+	&__table-block{
+		@media @lessLG{
+			.f(@fs16, @lh16);
+			td, th{
+				padding: 7px 0;
+			}
+		}
+	}
+	
 	&__table-addition{
 		padding: var(--m12) var(--m10) var(--m12);
 		text-align:right;
 		color: @cGray;
+		@media @lessLG{
+			padding-bottom:0;
+			padding-right:0;
+		}
 	}
 	
 	
@@ -92,6 +147,10 @@
 		.wave{
 			fill:@cNotWhite;
 		}
+
+		@media @lessMD{
+			display:none;
+		}
 	}
 	&__wave-shadow{
 		position:absolute;
@@ -99,5 +158,9 @@
 		width:100%;
 		height:350px;
 		top: calc(~"100%");
+
+		@media @lessMD{
+			display:none;
+		}
 	}
 }

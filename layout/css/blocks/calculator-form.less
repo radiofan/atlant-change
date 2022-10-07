@@ -10,9 +10,23 @@
 		flex-wrap:wrap;
 		justify-content:space-between;
 		align-items: center;
+		row-gap:var(--m20);
+		
+		@media @lessMD{
+			margin-top:-16px;
+			align-items: flex-start;
+			flex-direction:column;
+		}
+		
+		.btn-submit{
+			align-self:center;
+		}
 	}
 	
 	&__result{
 		.padding-lr(var(--m20));
+		@media @lessMD{
+			.padding-lr(0);
+		}
 	}
 }
