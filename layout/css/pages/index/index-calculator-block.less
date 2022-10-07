@@ -3,18 +3,15 @@
 	background-color:@cNotWhite;
 	height: 793px; //todo
 	position:relative;
-
-	z-index:10;
 	
 	&__container{
 		display:flex;
 		flex-direction:column;
 		align-items:center;
-		width:100%;
 		height:900px;
 		background-color:transparent;
-		position:relative;
-		z-index:15;
+		z-index:3;
+		overflow-x: clip;
 	}
 	
 	&__header-block{
@@ -29,12 +26,15 @@
 		text-align:center;
 	}
 	
+	&__wrap{
+		max-width:1346px;
+		width:100%;
+		position:relative;
+	}
+	
 	&__calcultor-block{
 		background: radial-gradient(112.8% 323.53% at 0% 0.03%, rgba(54, 130, 137, 0.36) 0%, rgba(54, 130, 137, 0) 100%);
 		backdrop-filter: blur(8.5px);
-		//width: 575px;//todo
-		//height: 575px;
-		max-width:1346px;
 		width:100%;
 		padding: var(--m130) var(--m30);
 		
@@ -47,6 +47,35 @@
 		}
 	}
 	
+	&__figure-triangle{
+		height:192px;
+		width:221px;
+		
+		position: absolute;
+		z-index:-1;
+		top: -107px;
+		left: -118px;
+		
+		.figure{
+			fill:@cCyan;
+			filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+		}
+	}
+
+	&__figure-tor{
+		.sq(390px);
+		
+		position: absolute;
+		z-index:-1;
+		bottom: -200px;
+		right: -150px;
+
+		.figure{
+			stroke:@cCyan;
+			filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+		}
+	}
+	
 	&__table-addition{
 		padding: var(--m12) var(--m10) var(--m12);
 		text-align:right;
@@ -56,7 +85,7 @@
 	
 	&__wave{
 		position:absolute;
-		z-index:10;
+		z-index:2;
 		width:100%;
 		height:266px;
 		top: calc(~"100% - 2px");
@@ -66,7 +95,7 @@
 	}
 	&__wave-shadow{
 		position:absolute;
-		z-index:9;
+		z-index:1;
 		width:100%;
 		height:350px;
 		top: calc(~"100%");

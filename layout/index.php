@@ -2,7 +2,7 @@
 <?php require_once 'header.php'; ?>
 	<section class="index-calculator-block">
 		
-		<div class="index-calculator-block__container">
+		<div class="index-calculator-block__container container">
 			<div class="index-calculator-block__header-block">
 				<div class="index-calculator-block__header">
 					<h1>Мультивалютный обменый сервис</h1>
@@ -11,54 +11,66 @@
 					Быстрый, защищенный и анонимный
 				</div>
 			</div>
-			<div class="index-calculator-block__calcultor-block">
-				<form class="calculator-form">
-					<div class="select">
-						<select name="type" class="calculator-form__type-select">
-							<option value="sale">Продать</option>
-						</select>
+			<div class="index-calculator-block__wrap">
+
+				<svg class="index-calculator-block__figure-triangle" viewBox="0 0 221 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path class="figure" d="M106.5 0L212.588 183.75H0.411888L106.5 0Z"/>
+				</svg>
+
+				<svg class="index-calculator-block__figure-tor" viewBox="0 0 390 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path class="figure" d="M346 190.933C346 276.488 276.616 345.865 191 345.865C105.384 345.865 36 276.488 36 190.933C36 105.378 105.384 36 191 36C276.616 36 346 105.378 346 190.933Z" stroke-width="72"/>
+				</svg>
+				
+				<div class="index-calculator-block__calcultor-block">
+					<form class="calculator-form">
+						<div class="select">
+							<select name="type" class="calculator-form__type-select">
+								<option value="sale">Продать</option>
+							</select>
+						</div>
+						<div class="select">
+							<select name="currency" class="calculator-form__currency-select">
+								<option value="ethereum">Ethereum</option>
+							</select>
+						</div>
+						<input type="text" name="value" class="calculator-form__value-input" value="100">
+						<div class="calculator-form__submit-section h5">
+							<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0 ₽</span></div>
+							<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
+						</div>
+					</form>
+					<div class="index-calculator-block__table-block">
+						<table>
+							<thead>
+								<tr>
+									<th>Валюта</th>
+									<th>Покупка</th>
+									<th>Продажа</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Bitcoin</td>
+									<td>1308953.47 ₽</td>
+									<td>1186621.37 ₽</td>
+								</tr>
+								<tr>
+									<td>Ethereum</td>
+									<td>66768.66 ₽</td>
+									<td>66768.66 ₽</td>
+								</tr>
+								<tr>
+									<td>Tether (USDT)</td>
+									<td>67.9302 ₽</td>
+									<td>62.1242 ₽</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="index-calculator-block__table-addition">Обновлено 08.02.22</div>
 					</div>
-					<div class="select">
-						<select name="currency" class="calculator-form__currency-select">
-							<option value="ethereum">Ethereum</option>
-						</select>
-					</div>
-					<input type="text" name="value" class="calculator-form__value-input" value="100">
-					<div class="calculator-form__submit-section h5">
-						<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0 ₽</span></div>
-						<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
-					</div>
-				</form>
-				<div class="index-calculator-block__table-block">
-					<table>
-						<thead>
-							<tr>
-								<th>Валюта</th>
-								<th>Покупка</th>
-								<th>Продажа</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Bitcoin</td>
-								<td>1308953.47 ₽</td>
-								<td>1186621.37 ₽</td>
-							</tr>
-							<tr>
-								<td>Ethereum</td>
-								<td>66768.66 ₽</td>
-								<td>66768.66 ₽</td>
-							</tr>
-							<tr>
-								<td>Tether (USDT)</td>
-								<td>67.9302 ₽</td>
-								<td>62.1242 ₽</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="index-calculator-block__table-addition">Обновлено 08.02.22</div>
 				</div>
 			</div>
+			
 		</div>
 		
 		
