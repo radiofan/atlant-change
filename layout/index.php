@@ -91,7 +91,7 @@
 						<p>Добавьте в месенджер нашего бота и  совершайте обмен совершенно анонимно.</p>
 						<p>Наш бот работает быстро, качественно и надежно. Он поможет вам без лишних вопросов совершить обмен.</p>
 					</div>
-					<a class="btn btn-green" href="javascript:void(0)">К боту</a>
+					<a class="index-o-block__data-block__btn btn btn-green" href="javascript:void(0)">К боту</a>
 				</div>
 				<div class="index-o-block__phone-block">
 					<div class="index-o-block__phone-block__shadow"></div>
@@ -99,8 +99,8 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="index-o-block__tor"></div>
+		<div class="index-o-block__shadow"></div>
 	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
