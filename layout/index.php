@@ -82,6 +82,26 @@
 		</svg>
 
 	</section>
+	<section class="index-o-block">
+		<div class="container">
+			<div class="index-o-block__container">
+				<div class="index-o-block__data-block">
+					<h2 class="index-o-block__data-block__header">Совершайте обмен  криптовалют в Телеграм</h2>
+					<div class="index-o-block__data-block__description">
+						<p>Добавьте в месенджер нашего бота и  совершайте обмен совершенно анонимно.</p>
+						<p>Наш бот работает быстро, качественно и надежно. Он поможет вам без лишних вопросов совершить обмен.</p>
+					</div>
+					<a class="btn btn-green" href="javascript:void(0)">К боту</a>
+				</div>
+				<div class="index-o-block__phone-block">
+					<div class="index-o-block__phone-block__shadow"></div>
+					<div class="index-o-block__phone-block__background"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="index-o-block__tor"></div>
+	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
 <?php require_once 'footer.php'; ?>

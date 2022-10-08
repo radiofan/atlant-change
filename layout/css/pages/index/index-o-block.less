@@ -1,0 +1,98 @@
+
+.index-o-block{
+	height:(900 - 793 + 65 + 855) + px;
+	position:relative;
+	overflow-x:clip;
+	padding-top:(900 - 793 + 65) + px;
+	
+	& > .container{
+		height:100%;
+	}
+	
+	&__container{
+		display:flex;
+		.padding-lr(var(--m140));
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+	
+	&__data-block{
+		max-width:650px;
+		display:flex;
+		flex-direction:column;
+		align-items: start;
+		row-gap: 22px;
+		padding-top: 68px;
+		padding-right:var(--m20);
+		
+		&__description{
+			max-width:520px;
+			margin-bottom:var(--m40);
+		}
+	}
+	
+	&__phone-block{
+		width: 504.31px;
+		height: 644.33px;
+		background-image:url("/assets/mobile.png");
+		background-repeat:no-repeat;
+		background-size:cover;
+		
+		position:relative;
+		
+		flex-shrink:0;
+		align-self: end;
+		
+		&__shadow{
+			height:100%;
+			width:99%;
+			position:absolute;
+			top:0;
+			right:0;
+			bottom:0;
+			left:0;
+			border-radius:80px 80px 0 0;
+			z-index:-1;
+			box-shadow: 30px 40px 25px rgba(0, 0, 0, 0.5);
+		}
+		
+		
+		&__background{
+			width: 451.62px;
+			height: 622.8px;
+			margin:21.53px 27.77px 0 24.93px;
+			background-image:url("/assets/mobile-background.png");
+			background-repeat:no-repeat;
+			background-size:cover;
+		}
+	}
+	
+	&__tor{
+		background-color:@cYellow;
+		width: 85.9vw;
+		height: 85.9vw;
+		//max-width:1700px;
+		//max-height:1700px;
+		min-width:1600px;
+		min-height:1600px;
+		position:absolute;
+		clip-path:circle(50% at 50% 50%);
+		z-index: -2;
+
+		left: 3.7vw;
+		top: -19.3%;
+		
+		&::before{
+			content:'';
+			background-color:@cWhite;
+			width: 57%;
+			height: 57%;
+			position:absolute;
+			clip-path:circle(50% at 50% 50%);
+			top:50%;
+			left:50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}

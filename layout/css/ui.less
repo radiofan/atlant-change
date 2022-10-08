@@ -83,6 +83,24 @@ select{
 		cursor: not-allowed;
 	}
 	
+	&-green{
+		background-color:@cCyan;
+		color:@cWhite;
+		.trs(background-color, 0.1);
+
+		&:disabled{
+			background-color:lighten(@cCyan, 10%);
+		}
+
+		&:hover{
+			background-color:lighten(@cCyan, 10%);
+		}
+
+		&:active{
+			background-color:@cCyan;
+		}
+	}
+	
 	&-submit{
 		background-color:@cYellow;
 		.trs(background-color, 0.1);
