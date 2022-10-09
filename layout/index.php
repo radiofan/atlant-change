@@ -152,6 +152,67 @@
 			<div class="index-how-work-block__step__text h5">Оператор переводит Вам кэш</div>
 		</div>
 	</section>
+	<section class="index-feedback-block container">
+		<h2>Отзывы о&nbsp;нас</h2>
+		<div class="index-feedback-block__links-block">
+			<a class="link" href="javascript:void(0)">Оставить отзыв</a>
+			<a class="link" href="javascript:void(0)">Смотреть все</a>
+		</div>
+		<div class="feedback-slider">
+			<button class="feedback-slider__button feedback-slider__left-arrow icon icon-left-arrow"></button>
+			<div class="feedback-slider__content index-feedback-block__feedback-container">
+				<div class="feedback-card">
+					<div class="feedback-card__content">
+						<div class="feedback-card__header">
+							<span>Кобеза Дмитрий</span>
+							<span class="feedback-card__rating"><span class="color--yellow">5</span>/5</span>
+						</div>
+						<div class="feedback-card__description">
+							Психологический клуб "Интерес к жизни" выражает благодарность Комитету социальной защиты, Директору МКУ СРЦН "Уютный дом" Левушкиной Катерине Владимировне, психологу ОППП Калабиной Марии Александровне и все психологам отеделения, которые принимали участие в работе и жизни клуба за предоставленную возможность в течении многих лет получать знания и психологическую помощь.
+						</div>
+					</div>
+					<div class="feedback-card__date">08.06.22</div>
+				</div>
+				<div class="feedback-card">
+					<div class="feedback-card__content">
+						<div class="feedback-card__header">
+							<span>Галина Семушина</span>
+							<span class="feedback-card__rating"><span class="color--yellow">5</span>/5</span>
+						</div>
+						<div class="feedback-card__description">
+							Спасибо за первоклассную работу. Необходимо было поставить оборудование на 18 автомобилей с отслеживанием всех показателей. Сотрудники Геоокей полностью рассказали про всю работу устройств и про саму систему онлайн-мониторинга. За систему отдельное спасибо. Пользуемся месяц. По сравнению с предыдущей намного проще и удобней. Теперь будем переводить весь парк на систему от Геоокей.
+						</div>
+					</div>
+					<div class="feedback-card__date">08.06.22</div>
+				</div>
+				<div class="feedback-card">
+					<div class="feedback-card__content">
+						<div class="feedback-card__header">
+							<span>Галина Семушина</span>
+							<span class="feedback-card__rating"><span class="color--yellow">5</span>/5</span>
+						</div>
+						<div class="feedback-card__description">
+							Спасибо за первоклассную работу. Необходимо было поставить оборудование на 18 автомобилей с отслеживанием всех показателей. Сотрудники Геоокей полностью рассказали про всю работу устройств и про саму систему онлайн-мониторинга. За систему отдельное спасибо. Пользуемся месяц. По сравнению с предыдущей намного проще и удобней. Теперь будем переводить весь парк на систему от Геоокей.
+						</div>
+					</div>
+					<div class="feedback-card__date">08.06.22</div>
+				</div>
+				<div class="feedback-card">
+					<div class="feedback-card__content">
+						<div class="feedback-card__header">
+							<span>Кобеза Дмитрий</span>
+							<span class="feedback-card__rating"><span class="color--yellow">5</span>/5</span>
+						</div>
+						<div class="feedback-card__description">
+							Психологический клуб "Интерес к жизни" выражает благодарность Комитету социальной защиты, Директору МКУ СРЦН "Уютный дом" Левушкиной Катерине Владимировне, психологу ОППП Калабиной Марии Александровне и все психологам отеделения, которые принимали участие в работе и жизни клуба за предоставленную возможность в течении многих лет получать знания и психологическую помощь.
+						</div>
+					</div>
+					<div class="feedback-card__date">08.06.22</div>
+				</div>
+			</div>
+			<button class="feedback-slider__button feedback-slider__right-arrow icon icon-right-arrow"></button>
+		</div>
+	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
 <?php require_once 'footer.php'; ?>

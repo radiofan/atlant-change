@@ -4,22 +4,17 @@ a{
 	cursor:pointer;
 
 	.trs(color, 0.1);
-	
-	&.disabled{
-		cursor:not-allowed;
-		color:lighten(#001AFF, 10%);
-	}
-	
+
 	&.link{
-		color:#001AFF;
 		&:not(.disabled):hover{
-			color:lighten(#001AFF, 10%);
-		}
-		&.active{
-			color:lighten(#001AFF, 10%);
+			color:@cYellow;
 		}
 		&:not(.disabled):active{
-			color:darken(#001AFF, 10%);
+			color:darken(@cYellow, 20%);
+		}
+		&.disabled{
+			cursor:not-allowed;
+			color:@cGray;
 		}
 	}
 }

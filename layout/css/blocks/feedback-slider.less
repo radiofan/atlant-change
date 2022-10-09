@@ -1,0 +1,34 @@
+
+.feedback-slider{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	column-gap:var(--m10);
+
+	@media @lessMD{
+		.padding-lr(var(--m10));
+	}
+	
+	&__button{
+		cursor:pointer;
+		border:0;
+		background-color:transparent;
+		display:none;
+		flex-shrink:0;
+
+		&:not(:disabled,.disabled):hover{
+			color:@cYellow;
+		}
+		&:not(:disabled,.disabled):active{
+			color:darken(@cYellow, 20%);
+		}
+		&:disabled,.disabled{
+			cursor:not-allowed;
+			color:@cGray;
+		}
+		
+		@media @lessMD{
+			display:block;
+		}
+	}
+}

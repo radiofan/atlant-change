@@ -43,10 +43,10 @@
 .font(@family, @filename: @family, @weight: normal, @style: normal) {
 	@font-face {
 		font-family: @family;
-		src:url('./assets/@{filename}.eot');
-		src:url('./assets/@{filename}.eot?#iefix') format('embedded-opentype'),
-		url('./assets/@{filename}.woff') format('woff'),
-		url('./assets/@{filename}.ttf') format('truetype');
+		src:url('./assets/fonts/@{filename}.eot');
+		src:url('./assets/fonts/@{filename}.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/@{filename}.woff') format('woff'),
+		url('./assets/fonts/@{filename}.ttf') format('truetype');
 		font-weight: @weight;
 		font-style: @style;
 	}

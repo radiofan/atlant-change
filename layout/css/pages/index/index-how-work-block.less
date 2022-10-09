@@ -57,20 +57,11 @@
 		}
 		
 		&__arrow{
-			width:30px;
-			height:30px;
-			font-family:"dashicons", serif;
-			position:relative;
-			&::before{
-				width:30px;
-				height:30px;
-				position:absolute;
-				content:"\f345"; //todo
-				text-align:center;
-				font-size:25px;
-				line-height:34px;
-				
-				@media @lessMD{
+			.icon;
+			.icon-right-arrow;
+
+			@media @lessMD{
+				&::before{
 					content:"\f347";
 				}
 			}
