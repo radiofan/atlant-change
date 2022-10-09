@@ -8,7 +8,7 @@
 					<h1>Мультивалютный обменый сервис</h1>
 				</div>
 				<div class="index-calculator-block__description">
-					Быстрый, защищенный и анонимный
+					Быстрый, защищенный&nbsp;и анонимный
 				</div>
 			</div>
 			<div class="index-calculator-block__wrap">
@@ -35,7 +35,7 @@
 						</div>
 						<input type="text" name="value" class="calculator-form__value-input" value="100">
 						<div class="calculator-form__submit-section h5">
-							<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0 ₽</span></div>
+							<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0&nbsp;₽</span></div>
 							<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
 						</div>
 					</form>
@@ -51,18 +51,18 @@
 							<tbody>
 								<tr>
 									<td>Bitcoin</td>
-									<td>1308953.47 ₽</td>
-									<td>1186621.37 ₽</td>
+									<td>1308953.47&nbsp;₽</td>
+									<td>1186621.37&nbsp;₽</td>
 								</tr>
 								<tr>
 									<td>Ethereum</td>
-									<td>66768.66 ₽</td>
-									<td>66768.66 ₽</td>
+									<td>66768.66&nbsp;₽</td>
+									<td>66768.66&nbsp;₽</td>
 								</tr>
 								<tr>
 									<td>Tether (USDT)</td>
-									<td>67.9302 ₽</td>
-									<td>62.1242 ₽</td>
+									<td>67.9302&nbsp;₽</td>
+									<td>62.1242&nbsp;₽</td>
 								</tr>
 							</tbody>
 						</table>
@@ -86,12 +86,12 @@
 		<div class="container">
 			<div class="index-o-block__container">
 				<div class="index-o-block__data-block">
-					<h2 class="index-o-block__data-block__header">Совершайте обмен  криптовалют в Телеграм</h2>
+					<h2 class="index-o-block__data-block__header">Совершайте обмен криптовалют в&nbsp;Телеграм</h2>
 					<div class="index-o-block__data-block__description">
-						<p>Добавьте в месенджер нашего бота и  совершайте обмен совершенно анонимно.</p>
-						<p>Наш бот работает быстро, качественно и надежно. Он поможет вам без лишних вопросов совершить обмен.</p>
+						<p>Добавьте в&nbsp;месенджер нашего бота&nbsp;и совершайте обмен совершенно анонимно.</p>
+						<p>Наш&nbsp;бот работает быстро, качественно&nbsp;и надежно. Он поможет вам без&nbsp;лишних вопросов совершить обмен.</p>
 					</div>
-					<a class="index-o-block__data-block__btn btn btn-green" href="javascript:void(0)">К боту</a>
+					<a class="index-o-block__data-block__btn btn btn-green" href="javascript:void(0)">К&nbsp;боту</a>
 				</div>
 				<div class="index-o-block__phone-block">
 					<div class="index-o-block__phone-block__shadow"></div>
@@ -101,6 +101,20 @@
 		</div>
 		<div class="index-o-block__tor"></div>
 		<div class="index-o-block__shadow"></div>
+	</section>
+	<section class="index-about-block container">
+		<div class="index-about-block__atlant-img">
+			<img src="/assets/atlant.png" alt="Маскот">
+		</div>
+		<div class="index-about-block__data-block">
+			<h2>О&nbsp;сервисе</h2>
+			<p>
+				ATLANT-CHANGE это быстрый&nbsp;и анонимный сервис обмена криптовалют!
+				Наша команда поможет&nbsp;вам качествено&nbsp;и выгодно совершить сделку по&nbsp;обмену криптовалюты.
+				Мы обеспечиваем быстрые обмены, поразительный уровень работы техподдержки&nbsp;и практически полное отсутствие технических проблем.
+				Среднее время обработки одной заявки 15&nbsp;минут.
+			</p>
+		</div>
 	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
