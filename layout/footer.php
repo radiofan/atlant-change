@@ -15,6 +15,7 @@
 		</div>
 	</div>
 </footer>
+<?php echo file_get_contents('./assets/sprites.svg'); ?>
 <?php //wp_footer(); ?>
 </body>
 </html>

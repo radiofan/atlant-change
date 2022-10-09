@@ -116,6 +116,42 @@
 			</p>
 		</div>
 	</section>
+	<section class="index-how-work-block container">
+		<h2>Как это работает</h2>
+		<div class="index-how-work-block__steps-block">
+			<div class="index-how-work-block__step__number">
+				<svg class="index-how-work-block__step__digit">
+					<use xlink:href="#one"></use>
+				</svg>
+				<svg class="index-how-work-block__step__icon">
+					<use xlink:href="#server"></use>
+				</svg>
+			</div>
+			<div class="index-how-work-block__step__text h5">Вы создаете заявку на&nbsp;обмен</div>
+			<div class="index-how-work-block__step__arrow"></div>
+
+			<div class="index-how-work-block__step__number">
+				<svg class="index-how-work-block__step__digit">
+					<use xlink:href="#two"></use>
+				</svg>
+				<svg class="index-how-work-block__step__icon">
+					<use xlink:href="#headphones"></use>
+				</svg>
+			</div>
+			<div class="index-how-work-block__step__text h5">Мы обрабатываем данные</div>
+			<div class="index-how-work-block__step__arrow"></div>
+
+			<div class="index-how-work-block__step__number">
+				<svg class="index-how-work-block__step__digit">
+					<use xlink:href="#three"></use>
+				</svg>
+				<svg class="index-how-work-block__step__icon">
+					<use xlink:href="#repeat"></use>
+				</svg>
+			</div>
+			<div class="index-how-work-block__step__text h5">Оператор переводит Вам кэш</div>
+		</div>
+	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
 <?php require_once 'footer.php'; ?>
