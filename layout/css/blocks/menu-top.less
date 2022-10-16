@@ -15,11 +15,12 @@
 			color:@cCyan;
 		}
 		&:not(.disabled):active{
-			color:darken(@cCyan, 20%);
+			color:inherit;
 		}
 
 		&.disabled{
 			color:lighten(@cBlack, 30%);
+			cursor:not-allowed;
 		}
 		
 	}
