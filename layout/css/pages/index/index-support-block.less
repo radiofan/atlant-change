@@ -1,7 +1,7 @@
 
 .index-support-block{
-	
-	.padding-tp(var(--m80));
+	padding-top: var(--m80);
+	padding-bottom: 65px;
 	display:flex;
 	column-gap:var(--m20);
 	row-gap: 26px;
@@ -33,9 +33,11 @@
 		flex-grow:1;
 		
 		position:relative;
-		width:calc(~"100% + var(--side-gap) * 2");
+		width:100%;
+		min-height: 540px;
 		//overflow:hidden;
 		@media @lessMD{
+			width:calc(~"100% + var(--side-gap) * 2");
 			margin-left:calc(-1 * var(--side-gap));
 			height: 80vw;
 			min-height:320px;
