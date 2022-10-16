@@ -159,7 +159,7 @@
 			<a class="link" href="javascript:void(0)">Смотреть все</a>
 		</div>
 		<div class="feedback-slider">
-			<button class="feedback-slider__button feedback-slider__left-arrow icon icon-left-arrow"></button>
+			<button class="btn-empty feedback-slider__button feedback-slider__left-arrow icon icon-left-arrow"></button>
 			<div class="feedback-slider__content index-feedback-block__feedback-container">
 				<div class="feedback-card">
 					<div class="feedback-card__content">
@@ -210,8 +210,68 @@
 					<div class="feedback-card__date">08.06.22</div>
 				</div>
 			</div>
-			<button class="feedback-slider__button feedback-slider__right-arrow icon icon-right-arrow"></button>
+			<button class="btn-empty feedback-slider__button feedback-slider__right-arrow icon icon-right-arrow"></button>
 		</div>
+	</section>
+	<section class="index-news-block">
+		
+		<svg class="index-news-block__wave" viewBox="0 0 1920 240" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path class="wave" d="M1920,38c-183,21-550,56-960,1C783.221,15.286,522-17,0,39v180h1920V38z"/>
+		</svg>
+		
+		<div class="index-news-block__container container">
+			<h2 class="index-news-block__header">Новости</h2>
+			
+			<div class="index-news-block__news-block">
+
+				<div class="news-card news-card--right">
+					<div class="news-card__data-block">
+						<div class="news-card__data">
+							<div class="news-card__header"><a href="javascript:void(0)">В США криптовалюту хотят приравнять к инвестиционным активам</a></div>
+							<div class="news-card__description">
+								Сейчас Комиссия по ценным бумагам США проверяет криптобиржу Binance на возможные нарушения торговли ее собственной цифровой монетой, токеном BNB, в 2017 году. Регулятор полагает, что инвесторы приобретали токен BNB для финансирования компании и получения прибыли от вложений
+							</div>
+						</div>
+						<div class="news-card__links">
+							<div class="news-card__date">16 мар. 2022 г.</div>
+							<div class="news-card__link">
+								<a href="javascript:void(0)" class="link">Подробнее</a>
+							</div>
+						</div>
+					</div>
+					<div class="news-card__img-block">
+						<img src="/assets/news_1.jpg" alt="Новость 1" class="news-card__img">
+					</div>
+				</div>
+				
+				<div class="news-card">
+					<div class="news-card__data-block">
+						<div class="news-card__data">
+							<div class="news-card__header"><a href="javascript:void(0)">Легализация криптовалют в Украине</a></div>
+							<div class="news-card__description">
+								Президент страны подписал закон «О виртуальных активах». Теперь на Украине смогут зарегистрироваться криптобиржи, а банки начнут открывать счета для компаний, ориентированных на сферу криптовалют.
+							</div>
+						</div>
+						<div class="news-card__links">
+							<div class="news-card__date">25 апр. 2022 г.</div>
+							<div class="news-card__link">
+								<a href="javascript:void(0)" class="link">Подробнее</a>
+							</div>
+						</div>
+					</div>
+					<div class="news-card__img-block">
+						<img src="/assets/news_2.jpg" alt="Новость 2" class="news-card__img">
+					</div>
+				</div>
+				
+			</div>
+			<div class="index-news-block__pagination">
+				<button class="index-news-block__pagination__page-btn btn-empty active">1</button>
+				<button class="index-news-block__pagination__page-btn btn-empty">2</button>
+				<button class="index-news-block__pagination__page-btn btn-empty">3</button>
+			</div>
+		</div>
+		
 	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>

@@ -10,22 +10,8 @@
 	}
 	
 	&__button{
-		cursor:pointer;
-		border:0;
-		background-color:transparent;
 		display:none;
 		flex-shrink:0;
-
-		&:not(:disabled,.disabled):hover{
-			color:@cYellow;
-		}
-		&:not(:disabled,.disabled):active{
-			color:darken(@cYellow, 20%);
-		}
-		&:disabled,.disabled{
-			cursor:not-allowed;
-			color:@cGray;
-		}
 		
 		@media @lessMD{
 			display:block;

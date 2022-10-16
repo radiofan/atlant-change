@@ -10,7 +10,7 @@ a{
 			color:@cYellow;
 		}
 		&:not(.disabled):active{
-			color:darken(@cYellow, 20%);
+			color:darken(@cYellow, 15%);
 		}
 		&.disabled{
 			cursor:not-allowed;
@@ -111,6 +111,31 @@ select{
 
 		&:active{
 			background-color:@cYellow;
+		}
+
+		&.active{
+			background-color:@cYellow;
+		}
+	}
+	
+	&-empty{
+		cursor:pointer;
+		border:0;
+		background-color:transparent;
+		.trs(color, 0.1);
+
+		&:not(:disabled,.disabled):hover{
+			color:@cYellow;
+		}
+		&:not(:disabled,.disabled):active{
+			color:darken(@cYellow, 15%);
+		}
+		&.active{
+			color:@cYellow;
+		}
+		&:disabled{
+			cursor:not-allowed;
+			color:@cGray;
 		}
 	}
 }
