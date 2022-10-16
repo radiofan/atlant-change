@@ -51,6 +51,14 @@
 		font-style: @style;
 	}
 }
+
+.absolute-center(){
+	position:absolute;
+	top:50%;
+	left:50%;
+	.transform(~"translate(-50%, -50%)");
+}
+
 // Transition
 .trs(@for: all, @time: 0.3, @type: ease-in) {
 	-webkit-transition: @for @type @time*1s;
