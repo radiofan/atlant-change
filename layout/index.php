@@ -297,6 +297,9 @@
 			</div>
 		</div>
 	</section>
+	<section class="index-ad-block container">
+		<div class="index-ad-block__ad"></div>
+	</section>
 	<section style="height:800px;background-color:red;"></section>
 <?php //get_footer(); ?>
 <?php require_once 'footer.php'; ?>
