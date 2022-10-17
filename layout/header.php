@@ -20,7 +20,7 @@
 </head>
 <body <?php //body_class(); ?>>
 <header>
-	<nav class="navbar navbar-top container h6">
+	<nav class="navbar navbar-top container h6<?= (PAGE != 'index' ? ' bg-color--not-white' : ''); ?>">
 		<div class="navbar-top__logo">
 			<a href="javascript:void(0)">
 				<img class="navbar-top__logo__img navbar-top__logo__img--desktop" src="/assets/logo.png" alt="Лого">
@@ -61,3 +61,20 @@
 		</button>
 	</nav>
 </header>
+<?php
+if(PAGE != 'index'){
+$a = '';
+switch(PAGE){
+	case 'news':
+		$a = 'Новости';
+		break;
+}
+?>
+
+<div class="page-header container">
+	<h3><?= $a; ?></h3>
+</div>
+
+<?php
+}
+?>

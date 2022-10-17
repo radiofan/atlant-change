@@ -1,5 +1,8 @@
 <?php //get_header(); ?>
-<?php require_once 'header.php'; ?>
+<?php
+define('PAGE', 'index');
+require_once 'header.php';
+?>
 	<section class="index-calculator-block">
 		
 		<div class="index-calculator-block__container container">

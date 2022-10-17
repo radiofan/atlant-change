@@ -45,6 +45,8 @@
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	font-size:inherit;
+	line-height:inherit;
 }
 
 body{
@@ -65,6 +67,26 @@ header{
 	width:100%;
 	top:0;
 	z-index:100;
+}
+
+.page-header{
+	height:80px;
+	padding-bottom:var(--m20);
+	display: flex;
+	align-items: flex-end;
+	
+	border-bottom:1px solid rgba(0, 0, 0, 0.3);
+	
+	@media @lessMD{
+		height:36px;
+		padding-bottom:7px;
+	}
+	
+	h3{
+		@media @lessMD{
+			.f(@fs16, @lh16);
+		}
+	}
 }
 
 .container{
