@@ -68,6 +68,9 @@ switch(PAGE){
 	case 'news':
 		$a = 'Новости';
 		break;
+	case 'for-partners':
+		$a = 'Партнерам';
+		break;
 }
 ?>
 
