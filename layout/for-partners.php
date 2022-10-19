@@ -45,5 +45,30 @@ require_once 'header.php';
 	</div>
 </section>
 
+<section class="for-partners-feedback-block">
+	<div class="for-partners-feedback-block__feedback-block">
+		<h2>Свяжитесь с нами</h2>
+		
+		<div class="for-partners-feedback-block__content">
+			<div class="for-partners-feedback-block__links">
+				<h4>Оператор</h4>
+				<a href="javascript:void(0)">@ATL_SUPPORT</a>
+				<h4>Бот для обмена</h4>
+				<a href="javascript:void(0)">@atlantch_bot</a>
+			</div>
+			<div class="for-partners-feedback-block__links">
+				<h4>Наша группа telegram</h4>
+				<a class="disabled" href="javascript:void(0)">@ATLCHANGE</a>
+		</div>
+		</div>
+	</div>
+	<div class="for-partners-feedback-block__description">
+		Основное направление нашего с Вами будущего партнерства - это привлечение трафика, заинтересованных людей в нашу, на данный момент небольшую, но очень перспективную, ЭКО-систему «ATLANT», на условиях партнерства.<br>
+		При обращении к нам за более подробной информацией, мы свяжемся с  каждым индивидуально и ответим на все интересующие Вас вопросы.<br>
+		Давайте строить будущее вместе!<br>
+		&ATL
+	</div>
+</section>
+
 <?php //get_footer(); ?>
 <?php require_once 'footer.php'; ?>

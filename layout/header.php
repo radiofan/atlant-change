@@ -29,10 +29,10 @@
 		</div>
 		<div class="collapse navbar-top__collapse" id="menu-top">
 			<div class="navbar-top__items">
-				<a class="navbar-top__item active" href="javascript:void(0)">Главная</a>
+				<a class="navbar-top__item active" href="/">Главная</a>
 				<a class="navbar-top__item" href="javascript:void(0)">Отзывы</a>
 				<a class="navbar-top__item" href="javascript:void(0)">Помощь</a>
-				<a class="navbar-top__item disabled" href="javascript:void(0)">Партнерам</a>
+				<a class="navbar-top__item disabled" href="/for-partners.php">Партнерам</a>
 				<?php $args = array( // опции для вывода верхнего меню, чтобы они работали, меню должно быть создано в админке
 					'theme_location' => 'top', // идентификатор меню, определен в register_nav_menus() в functions.php
 					'container'=> false, // обертка списка, тут не нужна
