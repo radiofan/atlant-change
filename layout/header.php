@@ -30,7 +30,7 @@
 		<div class="collapse navbar-top__collapse" id="menu-top">
 			<div class="navbar-top__items">
 				<a class="navbar-top__item active" href="/">Главная</a>
-				<a class="navbar-top__item" href="javascript:void(0)">Отзывы</a>
+				<a class="navbar-top__item" href="/feedback.php">Отзывы</a>
 				<a class="navbar-top__item" href="javascript:void(0)">Помощь</a>
 				<a class="navbar-top__item disabled" href="/for-partners.php">Партнерам</a>
 				<?php $args = array( // опции для вывода верхнего меню, чтобы они работали, меню должно быть создано в админке
@@ -70,6 +70,9 @@ switch(PAGE){
 		break;
 	case 'for-partners':
 		$a = 'Партнерам';
+		break;
+	case 'feedback':
+		$a = 'Отзывы';
 		break;
 }
 ?>

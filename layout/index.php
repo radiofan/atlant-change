@@ -268,9 +268,9 @@ require_once 'header.php';
 				</div>
 			</div>
 			<div class="index-news-block__pagination">
-				<button class="index-news-block__pagination__page-btn btn-empty active">1</button>
-				<button class="index-news-block__pagination__page-btn btn-empty">2</button>
-				<button class="index-news-block__pagination__page-btn btn-empty">3</button>
+				<button class="btn-empty active">1</button>
+				<button class="btn-empty">2</button>
+				<button class="btn-empty">3</button>
 			</div>
 		</div>
 		

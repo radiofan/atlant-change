@@ -57,4 +57,14 @@
 		<path d="M31.208 31.2083H31.2526" stroke="#368289" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
 
+	<svg viewBox="0 0 24 24" fill="none" id="left-arrow">
+		<path d="M19 12H5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M12 19L5 12L12 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
+
+	<svg viewBox="0 0 24 24" fill="none" id="right-arrow">
+		<path d="M5 12H19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M12 19L19 12L12 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
+
 </svg>
