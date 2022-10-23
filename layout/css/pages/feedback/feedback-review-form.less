@@ -1,0 +1,103 @@
+
+.feedback-review-form{
+	padding-top:var(--m50);
+	padding-bottom:var(--m80);
+	
+	& > h2{
+		@media @lessMD{
+			text-align:center;
+			.f(@fs32, @lh32);
+		}
+	}
+	
+	@media @lessMD{
+		padding-top:71px;
+		padding-bottom:var(--m40);
+	}
+	
+	&__container{
+		padding-top:var(--m50);
+		display:flex;
+		flex-direction:column;
+		row-gap:var(--m80);
+		
+		max-width:1345px;
+		position:relative;
+
+		@media @lessMD{
+			row-gap:var(--m40);
+		}
+	}
+	
+	&__input-block{
+		display:flex;
+		justify-content:space-between;
+		grid-gap:var(--m30);
+
+		@media @lessMD{
+			flex-direction:column;
+		}
+	}
+
+	input[type=text], input[type=number], input[type=email], input[type=password]{
+		max-width:520px;
+		border-top-width:0;
+		border-left-width:0;
+		border-right-width:0;
+		height:90px;
+
+		.h4;
+		
+		&:focus{
+			padding-left: var(--m20);
+		}
+
+		@media @lessMD{
+			.f(@fs16, @lh16);
+		}
+	}
+	
+	&__textarea{
+		width:100%;
+		resize:none;
+		height:287px;
+		padding:var(--m40) var(--m20);
+
+		.h4;
+		
+		margin-bottom:66px;
+
+		@media @lessMD{
+			margin-bottom:var(--m40);
+			.f(@fs16, @lh16);
+		}
+	}
+	
+	&__captcha{
+		max-width: 382px;
+		width: 100%;
+		height: 96px;
+		background-color:@cGray;
+		position:relative;
+		
+		&:after{
+			.absolute-center();
+			content:"Капча";
+		}
+	}
+	
+	&__submit-block{
+		display:flex;
+		column-gap:var(--m30);
+		row-gap:var(--m20);
+
+		@media @lessMD{
+			flex-direction:column;
+			align-items: flex-start;
+		}
+	}
+	
+	&__privacy{
+		color:@cGray;
+	}
+}
