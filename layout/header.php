@@ -61,6 +61,9 @@
 		</button>
 	</nav>
 </header>
+
+<main>
+	
 <?php
 if(PAGE != 'index'){
 $a = '';
@@ -74,12 +77,15 @@ switch(PAGE){
 	case 'feedback':
 		$a = 'Отзывы';
 		break;
+	case 'help':
+		$a = 'Помощь';
+		break;
 }
 ?>
-
-<div class="page-header container">
-	<h3><?= $a; ?></h3>
-</div>
+	
+	<div class="page-header container">
+		<h3><?= $a; ?></h3>
+	</div>
 
 <?php
 }

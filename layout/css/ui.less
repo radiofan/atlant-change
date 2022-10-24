@@ -140,3 +140,37 @@ select{
 		}
 	}
 }
+
+.spoiler{
+	position:relative;
+	
+	padding: var(--m20);
+	
+	&__header{
+		display:inline-block;
+		
+		&:hover{
+			font-weight: 500;
+		}
+	}
+	
+	&.active > &__header{
+		margin-bottom:var(--m30);
+		font-weight: 500;
+		.f(@fs24, @lh24);
+	}
+
+	&:not(.active) > &__content{
+		display:none;
+	}
+	
+	&--left-border{
+		border-left:4px solid;
+		border-left-color:@cCyan;
+		.trs(border-left-color, 0.1);
+	}
+
+	&--left-border.active{
+		border-left-color:@cYellow;
+	}
+}

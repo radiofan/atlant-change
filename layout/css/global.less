@@ -63,6 +63,10 @@ body{
 	.f(@fs20, @lh20);
 	
 	cursor:default;
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 header{
@@ -90,6 +94,14 @@ header{
 			.f(@fs16, @lh16);
 		}
 	}
+}
+
+main{
+	flex-grow: 1;
+}
+
+footer{
+	flex-shrink:0;
 }
 
 .container{

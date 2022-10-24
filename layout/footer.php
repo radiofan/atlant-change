@@ -1,3 +1,4 @@
+</main>
 <footer>
 	<nav class="navbar navbar-bottom container">
 		<div class="navbar-bottom__container">
