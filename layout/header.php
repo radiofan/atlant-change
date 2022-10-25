@@ -16,6 +16,9 @@
 
 	<link rel="stylesheet" type="text/css" href="/style.css?<?= filemtime('./style.css'); ?>">
 
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.modal.min.js"></script>
+
 	<?php //wp_head(); ?>
 </head>
 <body <?php //body_class(); ?>>
