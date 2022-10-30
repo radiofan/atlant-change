@@ -47,6 +47,7 @@
 	</nav>
 </footer>
 <?php echo file_get_contents('./assets/sprites.svg'); ?>
+<script type="text/javascript" src="/js/scripts.js"></script>
 <?php //wp_footer(); ?>
 </body>
 </html>
