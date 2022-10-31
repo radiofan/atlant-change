@@ -15,6 +15,9 @@ add_theme_support('automatic-feed-links');
 add_theme_support('title-tag');
 add_theme_support('admin-bar', ['callback' => '__return_false']);
 add_theme_support('menus');
+add_theme_support('post-thumbnails', ['post', 'page']);
+set_post_thumbnail_size(520, 520);
+add_post_type_support('page', 'excerpt');
 
 register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижнее меню, левая часть', 'bottom_r' => 'Нижнее меню, правая часть', 'bottom_rules' => 'Нижнее меню, правила',]);
 

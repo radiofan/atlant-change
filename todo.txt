@@ -28,3 +28,7 @@
 + Главная. тех поддержка
 + Главная. реклама
 + подвальное меню
+
+https://wp-kama.ru/id_89/uslovnyie-tegi-v-wordpress-i-vse-chto-s-nimi-svyazano.html
+https://wp-kama.ru/function/add_theme_support#starter-content
+https://wp-kama.ru/handbook/theme/customize-api

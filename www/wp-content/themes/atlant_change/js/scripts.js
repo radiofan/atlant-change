@@ -17,5 +17,33 @@ jQuery(document).ready(function($){
 			$spoiler.addClass('active');
 		});
 	});
+
+	$('body').on('click.collapse','*[data-toggle="collapse"]', function(e){
+		let $toggle_e = $($(this).data('target'));
+		
+		if(!$toggle_e){
+			return;
+		}
+		
+		if($toggle_e.data('is-toggle'))
+			return;
+
+		$toggle_e.data('is-toggle', true);
+		if($toggle_e.is(':hidden')){
+			$toggle_e.css('right', -$toggle_e.outerWidth(true)+'px');
+			$toggle_e.css('display', 'flex');
+			$toggle_e.animate({right: 0}, 300, function(){
+				$toggle_e.data('is-toggle', false);
+			});
+			
+		}else{			
+			$toggle_e.animate({right: -$toggle_e.outerWidth(true)+'px'}, 300, function(){
+				$toggle_e.css('display', '');
+				$toggle_e.css('right', '');
+				$toggle_e.data('is-toggle', false);
+			});
+			
+		}
+	});
 	
 });
