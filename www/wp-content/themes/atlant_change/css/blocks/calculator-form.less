@@ -1,0 +1,32 @@
+
+.calculator-form{
+	display:flex;
+	flex-direction:column;
+	row-gap:var(--m36);
+	
+	&__submit-section{
+		margin-top:6px;
+		display:flex;
+		flex-wrap:wrap;
+		justify-content:space-between;
+		align-items: center;
+		row-gap:var(--m20);
+		
+		@media @lessMD{
+			margin-top:-16px;
+			align-items: flex-start;
+			flex-direction:column;
+		}
+		
+		.btn-submit{
+			align-self:center;
+		}
+	}
+	
+	&__result{
+		.padding-lr(var(--m20));
+		@media @lessMD{
+			.padding-lr(0);
+		}
+	}
+}

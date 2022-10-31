@@ -1,0 +1,25 @@
+
+.index-ad-block{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	.padding-tp(var(--m80));
+	
+	position:relative;
+	
+	@media @lessMD{
+		display:none;
+	}
+	
+	&__ad{
+		background-color:#D9D9D9;
+		height:90px;
+		width:74%;
+
+		position:relative;
+		&::after{
+			content:"Реклама";
+			.absolute-center();
+		}
+	}
+}

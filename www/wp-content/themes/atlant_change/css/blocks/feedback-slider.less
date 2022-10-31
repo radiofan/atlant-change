@@ -1,0 +1,20 @@
+
+.feedback-slider{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	column-gap:var(--m10);
+
+	@media @lessMD{
+		.padding-lr(var(--m10));
+	}
+	
+	&__button{
+		display:none;
+		flex-shrink:0;
+		
+		@media @lessMD{
+			display:block;
+		}
+	}
+}

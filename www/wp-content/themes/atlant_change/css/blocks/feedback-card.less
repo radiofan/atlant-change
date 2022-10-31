@@ -1,0 +1,37 @@
+
+.feedback-card{
+	border:1px solid rgba(0, 0, 0, 0.7);
+	padding: var(--m40) var(--m20);
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	row-gap:var(--m20);
+	
+	&__header{
+		display:flex;
+		justify-content:space-between;
+		margin-bottom:var(--m20);
+		.h4;
+		
+		@media @lessMD{
+			margin-bottom:var(--m36);
+			font-weight:400;
+			.f(@fs20, @lh20);
+		}
+	}
+	
+	&__description{
+		margin-bottom:4px;
+		@media @lessMD{
+			.f(@fs16, @lh16);
+		}
+	}
+
+	&__date{
+		align-self:flex-end;
+		.f(@fs24, @lh24);
+		@media @lessMD{
+			.f(@fs20, @lh20);
+		}
+	}
+}

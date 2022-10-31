@@ -1,0 +1,99 @@
+// Размер шрифта и line-height
+.f(@fs, @lh) {
+	font-size: @fs;
+	line-height: @lh;
+}
+// Быстрый квадрат
+.sq(@size) {
+	height: @size*1px;
+	width: @size*1px;
+}
+// Цвет placeholder
+.ph(@color){
+	&::-webkit-input-placeholder {
+		color: @color
+	}
+	&:-moz-placeholder {
+		color: @color
+	}
+	&::-moz-placeholder {
+		color: @color
+	}
+	&:-ms-input-placeholder {
+		color: @color
+	}
+}
+.select-color(@color){
+	&::selection {
+		background: @color;
+	}
+	&::-moz-selection {
+		background: @color;
+	}
+}
+
+.disable-select(){
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}
+
+// Подключение шрифтов
+.font(@family, @filename: @family, @filepath: @fontPathDefault, @weight: normal, @style: normal) {
+	@font-face {
+		font-family: @family;
+		src:url(@filepath + @filename + '.eot');
+		src:url(@filepath + @filename + '.eot?#iefix') format('embedded-opentype'),
+		url(@filepath + @filename + '.woff') format('woff'),
+		url(@filepath + @filename + '.ttf') format('truetype');
+		font-weight: @weight;
+		font-style: @style;
+	}
+}
+
+.absolute-center(){
+	position:absolute;
+	top:50%;
+	left:50%;
+	.transform(~"translate(-50%, -50%)");
+}
+
+// Transition
+.trs(@for: all, @time: 0.3, @type: ease-in) {
+	-webkit-transition: @for @type @time*1s;
+	-moz-transition: @for @type @time*1s;
+	-o-transition: @for @type @time*1s;
+	transition: @for @type @time*1s;
+}
+.transform-origin(@x, @y){
+	-webkit-transform-origin: @x @y;
+	-moz-transform-origin: @x @y;
+	-o-transform-origin: @x @y;
+	-ms-transform-origin: @x @y;
+	transform-origin: @x @y;
+}
+.transform(@tans){
+	-moz-transform: @tans; // Для Firefox
+	-ms-transform: @tans; // Для IE
+	-webkit-transform: @tans; // Для Safari, Chrome, iOS
+	-o-transform: @tans; // Для Opera
+	transform:@tans;
+}
+//боковые отступы
+.padding-lr(@padding){
+	padding-left:@padding;
+	padding-right:@padding;
+}
+.margin-lr(@margin){
+	margin-left:@margin;
+	margin-right:@margin;
+}
+.padding-tp(@padding){
+	padding-top:@padding;
+	padding-bottom:@padding;
+}
+.margin-tp(@margin){
+	margin-top:@margin;
+	margin-bottom:@margin;
+}

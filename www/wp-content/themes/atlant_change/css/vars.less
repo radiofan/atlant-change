@@ -1,0 +1,84 @@
+//цвета
+@cYellow:	#EAC44A;
+@cCyan:		#368289;
+@cBlack:	#1A1A1A;
+@cGray:		#9FA7AB;
+@cNotWhite:	#F5F9FF;
+//@cNotWhite:	#00FFFF;
+@cWhite:	#FFFFFF;
+
+//размеры текста
+
+@fs48:	48px;
+@lh48:	59px;
+
+@fs40:	40px;
+@lh40:	49px;
+
+@fs32:	32px;
+@lh32:	39px;
+
+@fs24:	24px;
+@lh24:	29px;
+
+@fs20:	20px;
+@lh20:	24px;
+
+@fs16:	16px;
+@lh16:	20px;
+
+@themePathDefault: '/wp-content/themes/atlant_change';
+
+//отступы
+
+@m8:	8px;
+@m10:	10px;
+@m12:	12px;
+@m16:	16px;
+@m20:	20px;
+@m30:	30px;
+@m36:	36px;
+@m40:	40px;
+@m50:	50px;
+@m56:	56px;
+@m80:	80px;
+@m85:	85px;
+@m100:	100px;
+@m130:	130px;
+@m140:	140px;
+
+
+// Адаптив
+@xxxl_s:1920;
+@xxl_s:1500;
+@xl_s:1200;
+@lg_s:992;
+@md_s:850;
+@sm_s:576;
+@xs_s:375;
+
+@lessXXXL	: ~"screen and (max-width: "+(@xxxl_s - 0.6)+"px)";
+
+@moreXXL	: ~"screen and (min-width: "+@xxxl_s+"px)";
+@xxl		: ~"screen and (min-width: "+@xxl_s+"px) and (max-width: "+(@xxxl_s - 0.6)+"px)";
+@lessXXL	: ~"screen and (max-width: "+(@xxl_s - 0.6)+"px)";
+
+@moreXL	: ~"screen and (min-width: "+@xxl_s+"px)";
+@xl		: ~"screen and (min-width: "+@xl_s+"px) and (max-width: "+(@xxl_s - 0.6)+"px)";
+@lessXL	: ~"screen and (max-width: "+(@xl_s - 0.6)+"px)";
+
+@moreLG	: ~"screen and (min-width: "+@xl_s+"px)";
+@lg		: ~"screen and (min-width: "+@lg_s+"px) and (max-width: "+(@xl_s - 0.6)+"px)";
+@lessLG	: ~"screen and (max-width: "+(@lg_s - 0.6)+"px)";
+
+@moreMD	: ~"screen and (min-width: "+@lg_s+"px)";
+@md		: ~"screen and (min-width: "+@md_s+"px) and (max-width: "+(@lg_s - 0.6)+"px)";
+@lessMD	: ~"screen and (max-width: "+(@md_s - 0.6)+"px)";
+
+@moreSM	: ~"screen and (min-width: "+@md_s+"px)";
+@sm		: ~"screen and (min-width: "+@sm_s+"px) and (max-width: "+(@md_s - 0.6)+"px)";
+@lessSM	: ~"screen and (max-width: "+(@sm_s - 0.6)+"px)";
+
+@moreXS	: ~"screen and (min-width: "+@sm_s+"px)";
+@xs		: ~"screen and (min-width: "+@xs_s+"px) and (max-width: "+(@sm_s - 0.6)+"px)";
+@lessXS	: ~"screen and (max-width: "+(@xs_s - 0.6)+"px)";
