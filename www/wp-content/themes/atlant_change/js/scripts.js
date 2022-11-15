@@ -19,7 +19,8 @@ jQuery(document).ready(function($){
 	});
 
 	$('body').on('click.collapse','*[data-toggle="collapse"]', function(e){
-		let $toggle_e = $($(this).data('target'));
+		let $this = $(this);
+		let $toggle_e = $($this.data('target'));
 		
 		if(!$toggle_e){
 			return;
@@ -32,11 +33,13 @@ jQuery(document).ready(function($){
 		if($toggle_e.is(':hidden')){
 			$toggle_e.css('right', -$toggle_e.outerWidth(true)+'px');
 			$toggle_e.css('display', 'flex');
+			$this.attr('aria-expanded', true).addClass('navbar-top__toggle--close');
 			$toggle_e.animate({right: 0}, 300, function(){
 				$toggle_e.data('is-toggle', false);
 			});
 			
-		}else{			
+		}else{
+			$this.attr('aria-expanded', false).removeClass('navbar-top__toggle--close');
 			$toggle_e.animate({right: -$toggle_e.outerWidth(true)+'px'}, 300, function(){
 				$toggle_e.css('display', '');
 				$toggle_e.css('right', '');
