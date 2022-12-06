@@ -1,0 +1,17 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/large-section",
+	"title": "Секция на ширину страницы",
+	"icon": "align-wide",
+	"category": "atlant",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": "section.block-large-section"
+		}
+	},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./block.js"
+}
