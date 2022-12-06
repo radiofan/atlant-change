@@ -48,5 +48,12 @@ function atlant_register_blocks(){
 		return;
 	}
 
-	register_block_type(get_template_directory().'/blocks/atlant/large-section/');
+	register_block_type(get_template_directory().'/blocks/atlant/large-section/', [
+		'render_callback' => 'atlant_large_section_block_render',
+
+	]);
+}
+
+function atlant_large_section_block_render($args, $content){
+	return do_shortcode($content);
 }

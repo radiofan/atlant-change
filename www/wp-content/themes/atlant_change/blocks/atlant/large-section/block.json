@@ -5,13 +5,7 @@
 	"title": "Секция на ширину страницы",
 	"icon": "align-wide",
 	"category": "atlant",
-	"attributes": {
-		"content": {
-			"type": "string",
-			"source": "html",
-			"selector": "section.block-large-section"
-		}
-	},
+	"example": {},
 	"editorStyle": "file:./editor.css",
 	"editorScript": "file:./block.js"
 }
