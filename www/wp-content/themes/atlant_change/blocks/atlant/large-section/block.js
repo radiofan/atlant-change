@@ -8,12 +8,12 @@
 		icon: 'align-wide',
 		category: 'atlant',
 
-		edit: function () {
-			return el( 'section', useBlockProps(), el( InnerBlocks ) );
+		edit: function(){
+			return el('section', useBlockProps({className: 'atlant-large-section'}), el(InnerBlocks));
 		},
-		
-		save: function () {
-			return el( 'section', useBlockProps.save(), el( InnerBlocks.Content ) );
+
+		save: function(){
+			return el('section', useBlockProps.save({className: 'atlant-large-section'}), el(InnerBlocks.Content));
 		},
 	});
 })(

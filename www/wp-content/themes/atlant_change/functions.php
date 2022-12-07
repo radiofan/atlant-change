@@ -2,6 +2,10 @@
 
 if(!defined('ABSPATH')) die();
 
+if(!function_exists('WP_Filesystem')){
+	require_once(ABSPATH.'wp-admin/includes/file.php');
+}
+
 require_once get_template_directory().'/includes/rad-simple-walker-nav-class.php';
 
 /**
@@ -43,17 +47,38 @@ function atlant_register_block_category($block_categories){
 
 add_action('init', 'atlant_register_blocks');
 function atlant_register_blocks(){
+
+	/** @var \WP_Filesystem_Base $wp_filesystem */
+	global $wp_filesystem;
+	if(empty($wp_filesystem)){
+		WP_Filesystem();
+	}
+	
+	$blocks_path = get_template_directory().'/blocks/atlant/';
+	
+	$blocks_name = [];
+
+	$file_list = $wp_filesystem->dirlist($blocks_path, 0, 0);
+	foreach($file_list as $file_name => &$file_data){
+		if($file_data['type'] !== 'd'){
+			continue;
+		}
+		if(
+			file_exists($blocks_path.$file_name.'/shortcode.php')
+			&& file_exists($blocks_path.$file_name.'/block.asset.php')
+			&& file_exists($blocks_path.$file_name.'/block.json')
+		){
+			$blocks_name[] = $file_name;
+			require_once $blocks_path.$file_name.'/shortcode.php';
+		}
+	}
+	
 	if(!function_exists('register_block_type')){
-		// Gutenberg is not active.
 		return;
 	}
-
-	register_block_type(get_template_directory().'/blocks/atlant/large-section/', [
-		'render_callback' => 'atlant_large_section_block_render',
-
-	]);
-}
-
-function atlant_large_section_block_render($args, $content){
-	return do_shortcode($content);
+	
+	$len = sizeof($blocks_name);
+	for($i=0; $i<$len; $i++){
+		register_block_type($blocks_path.$file_name);
+	}
 }
