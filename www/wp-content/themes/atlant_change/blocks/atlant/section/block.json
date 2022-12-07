@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/section",
+	"title": "Секция с отступами",
+	"icon": "align-center",
+	"category": "atlant",
+	"example": {},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./block.js"
+}

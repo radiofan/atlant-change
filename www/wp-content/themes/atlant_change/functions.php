@@ -79,6 +79,6 @@ function atlant_register_blocks(){
 	
 	$len = sizeof($blocks_name);
 	for($i=0; $i<$len; $i++){
-		register_block_type($blocks_path.$file_name);
+		register_block_type($blocks_path.$blocks_name[$i]);
 	}
 }
