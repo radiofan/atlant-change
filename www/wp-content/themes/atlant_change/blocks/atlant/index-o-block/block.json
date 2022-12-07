@@ -1,0 +1,42 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/index-o-block",
+	"title": "Блок O на главной странице",
+	"icon": "marker",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Совершайте обмен криптовалют в&nbsp;Телеграм"
+		},
+		"content": {
+			"type": "string",
+			"default": "<p>Добавьте в&amp;nbsp;месенджер нашего бота&amp;nbsp;и совершайте обмен совершенно анонимно.</p>\n\t\t\t\t\t<p>Наш&amp;nbsp;бот работает быстро, качественно&amp;nbsp;и надежно. Он поможет вам без&amp;nbsp;лишних вопросов совершить обмен.</p>"
+		},
+		"button_text": {
+			"type": "string",
+			"default": "К&nbsp;боту"
+		},
+		"button_href": {
+			"type": "string",
+			"default": ""
+		},
+		"button_rel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"main_header": "Мультивалютный обменый сервис",
+			"sub_header": "Быстрый, защищенный&amp;nbsp;и анонимный",
+			"content": "[atlant-change-calculator][atlant-change-currency]"
+		}
+	},
+	"editorScript": "file:./block.js"
+}
