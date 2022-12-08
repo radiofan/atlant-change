@@ -1,0 +1,29 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/atlant-block",
+	"title": "Блок с атлантом",
+	"icon": "id",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "О&nbsp;сервисе"
+		},
+		"content": {
+			"type": "string",
+			"default": "<p>\n\t\t\tATLANT-CHANGE это быстрый&nbsp;и анонимный сервис обмена криптовалют!\n\t\t\tНаша команда поможет&nbsp;вам качествено&nbsp;и выгодно совершить сделку по&nbsp;обмену криптовалюты.\n\t\t\tМы обеспечиваем быстрые обмены, поразительный уровень работы техподдержки&nbsp;и практически полное отсутствие технических проблем.\n\t\t\tСреднее время обработки одной заявки 15&nbsp;минут.\n\t\t</p>"
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "О&nbsp;сервисе",
+			"content": "<p>\n\t\t\tATLANT-CHANGE это быстрый&nbsp;и анонимный сервис обмена криптовалют!\n\t\t\tНаша команда поможет&nbsp;вам качествено&nbsp;и выгодно совершить сделку по&nbsp;обмену криптовалюты.\n\t\t\tМы обеспечиваем быстрые обмены, поразительный уровень работы техподдержки&nbsp;и практически полное отсутствие технических проблем.\n\t\t\tСреднее время обработки одной заявки 15&nbsp;минут.\n\t\t</p>"
+		}
+	},
+	"editorScript": "file:./block.js"
+}

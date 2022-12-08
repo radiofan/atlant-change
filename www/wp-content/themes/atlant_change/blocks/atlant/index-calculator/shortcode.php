@@ -1,7 +1,7 @@
 <?php
 if(!defined('ABSPATH')) die();
-add_shortcode('atlant-index-calculator', 'atlant_index_calculator_block_render');
-function atlant_index_calculator_block_render($args, $content){
+add_shortcode('atlant-index-calculator', 'atlant__index_calculator__block_render');
+function atlant__index_calculator__block_render($args, $content){
 	return '
 <section class="index-calculator-block">
 	<div class="index-calculator-block__container container">

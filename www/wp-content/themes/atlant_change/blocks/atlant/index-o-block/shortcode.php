@@ -1,7 +1,7 @@
 <?php
 if(!defined('ABSPATH')) die();
-add_shortcode('atlant-index-o-block', 'atlant_index_index_o_block_block_render');
-function atlant_index_index_o_block_block_render($args, $content){
+add_shortcode('atlant-index-o-block', 'atlant__index_o_block__block_render');
+function atlant__index_o_block__block_render($args, $content){
 	return '
 <section class="index-o-block">
 	<div class="container">
