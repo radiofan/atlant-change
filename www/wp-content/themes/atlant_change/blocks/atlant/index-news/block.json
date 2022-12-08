@@ -1,0 +1,29 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/index-news",
+	"title": "Блок Новости на главной странице",
+	"icon": "format-aside",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Новости"
+		},
+		"content": {
+			"type": "string",
+			"default": "[atlant-news max=\"2\"]"
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "Новости",
+			"content": "[atlant-news max=\"2\"]"
+		}
+	},
+	"editorScript": "file:./block.js"
+}
