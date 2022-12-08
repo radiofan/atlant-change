@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/advertisement",
+	"title": "Реклама",
+	"icon": "money",
+	"category": "atlant",
+	"example": {},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./block.js"
+}
