@@ -1,0 +1,39 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/how-work",
+	"title": "Блок Как это работает",
+	"icon": "controls-forward",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Как это работает"
+		},
+		"first": {
+			"type": "string",
+			"default": "Вы создаете заявку на&nbsp;обмен"
+		},
+		"second": {
+			"type": "string",
+			"default": "Мы обрабатываем данные"
+		},
+		"third": {
+			"type": "string",
+			"default": "Оператор переводит Вам кэш"
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "Как это работает",
+			"first": "Вы создаете заявку на&nbsp;обмен",
+			"second": "Мы обрабатываем данные",
+			"third": "Оператор переводит Вам кэш"
+		}
+	},
+	"editorScript": "file:./block.js"
+}

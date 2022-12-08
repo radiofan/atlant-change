@@ -11,12 +11,12 @@ function atlant__index_o_block__block_render($args, $content){
 				<h2 class="index-o-block__data-block__header">'.esc_html($args['header']).'</h2>
 				' : '').'
 				'.(!empty($content) ? '
-				<div class="index-o-block__data-block__description">'.$content.'</div>
+				<div class="index-o-block__data-block__description">'.do_shortcode($content).'</div>
 				' : '').'
 				'.(!empty($args['button_text']) ? '
 				<a class="index-o-block__data-block__btn btn btn-green"
-					href="'.(empty($args['button_href']) ? 'javascript:void(0)' : esc_html($args['button_href'])).'"'
-					.(!empty($args['button_rel']) ? ' rel="'.esc_html($args['button_rel']).'"' : '')
+					href="'.(empty($args['button_href']) ? 'javascript:void(0)' : esc_attr($args['button_href'])).'"'
+					.(!empty($args['button_rel']) ? ' rel="'.esc_attr($args['button_rel']).'"' : '')
 					.'>'.esc_html($args['button_text']).'</a>
 				' : '').'
 			</div>

@@ -11,7 +11,7 @@ function atlant__atlant_block__block_render($args, $content){
 		'.(!empty($args['header']) ? '
 		<h2>'.esc_html($args['header']).'</h2>
 		' : '').'
-		'.(!empty($content) ? $content : '').'
+		'.do_shortcode($content).'
 	</div>
 </section>';
 }
