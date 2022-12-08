@@ -1,0 +1,55 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/index-reviews",
+	"title": "Блок Отзывы на главной странице",
+	"icon": "admin-comments",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Отзывы о&nbsp;нас"
+		},
+		"review_set_text": {
+			"type": "string",
+			"default": "Оставить отзыв"
+		},
+		"review_set_href": {
+			"type": "string",
+			"default": ""
+		},
+		"review_set_rel": {
+			"type": "string",
+			"default": ""
+		},
+		"reviews_text": {
+			"type": "string",
+			"default": "Смотреть все"
+		},
+		"reviews_href": {
+			"type": "string",
+			"default": ""
+		},
+		"reviews_rel": {
+			"type": "string",
+			"default": ""
+		},
+		"content": {
+			"type": "string",
+			"default": "[atlant-reviews-view max=\"4\" pagination=\"0\" yellow-ring=\"1\"]"
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "Отзывы о&nbsp;нас",
+			"review_set_text": "Оставить отзыв",
+			"reviews_text": "Смотреть все",
+			"content": "[atlant-reviews-view max=\"4\" pagination=\"0\" yellow-ring=\"1\"]"
+		}
+	},
+	"editorScript": "file:./block.js"
+}

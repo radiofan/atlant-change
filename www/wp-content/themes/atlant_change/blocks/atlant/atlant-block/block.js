@@ -48,7 +48,11 @@
 						'aria-label': block_inputs[attr].header,
 						onChange: function(data){
 							let tmp = {};
-							tmp[attr] = shortcode_escape(data);
+							if(typeof data == 'string' || data){
+								tmp[attr] = shortcode_escape(data);
+							}else{
+								tmp[attr] = '';
+							}
 							props.setAttributes(tmp);
 						}
 					}

@@ -1,73 +1,103 @@
 (function(blocks, editor, element, blockEditor){
 	let el = element.createElement;
 	let useBlockProps = blockEditor.useBlockProps;
-	
+
 	function shortcode_escape(str){
 		str = str + '';
 		return str.replaceAll('"', '&#34;')
-			.replaceAll('\'', '&#39;')
-			.replaceAll('[', '&#91;')
-			.replaceAll(']', '&#93;')
-			.replace(/\u0000/g, '\\0');
+		.replaceAll('\'', '&#39;')
+		.replaceAll('[', '&#91;')
+		.replaceAll(']', '&#93;')
+		.replace(/\u0000/g, '\\0');
 	}
 
-	blocks.registerBlockType('atlant/index-calculator', {
+	let block_spec = {
 		title: 'Блок с калькулятором на главной странице',
 		icon: 'analytics',
-		category: 'atlant',
+		category: 'atlant'
+	};
 
-		edit: function(props){
-			return el('div',useBlockProps({className: 'components-placeholder'}),
-				el('label',
-					{className: 'components-placeholder__label'},
-					el(element.RawHTML, null, '<span class="dashicons dashicons-analytics"></span> Блок с калькулятором на главной странице')
-				),
-				el('label', {className: 'components-placeholder__label'}, 'Главный заголовок'),
-				el(blockEditor.PlainText,
+	let block_name = 'atlant/index-calculator';
+
+	let block_inputs = {
+		"main_header": {
+			type: blockEditor.PlainText,
+			header: 'Заголовок'
+		},
+		"sub_header": {
+			type: blockEditor.PlainText,
+			header: 'Подзаголовок'
+		},
+		"content": {
+			type: blockEditor.RichText,
+			isContent: true,
+			header: 'Содержимое'
+		}
+	}
+
+	block_spec.edit = function(props){
+
+		let inputs = [];
+
+		for(let attr in block_inputs){
+			inputs.push(
+				el('label', {className: 'components-placeholder__label'}, block_inputs[attr].header)
+			);
+			inputs.push(
+				el(block_inputs[attr].type,
 					{
 						className: 'blocks-shortcode__textarea',
-						style: {marginBottom:'20px'},
-						value: props.attributes.main_header,
-						'aria-label': 'Главный заголовок',
-						onChange: main_header => props.setAttributes({
-							main_header
-						})
-					}
-				),
-				el('label', {className: 'components-placeholder__label'}, 'Подзаголовок'),
-				el(blockEditor.PlainText,
-					{
-						className: 'blocks-shortcode__textarea',
-						style: {marginBottom:'20px'},
-						value: props.attributes.sub_header,
-						'aria-label': 'Подзаголовок',
-						onChange: sub_header => props.setAttributes({
-							sub_header
-						})
-					}
-				),
-				el('label', {className: 'components-placeholder__label'}, 'Содержимое блока'),
-				el(blockEditor.RichText,
-					{
-						value: props.attributes.content,
-						'aria-label': 'Содержимое',
-						style: {width:'100%', backgroundColor:'#eee', minHeight:'150px'},
-						onChange: content => props.setAttributes({
-							content
-						})
+						style: block_inputs[attr].type == blockEditor.RichText ? {width:'100%', backgroundColor:'#eee', minHeight:'150px'} : {marginBottom:'20px'},
+						value: props.attributes[attr],
+						'aria-label': block_inputs[attr].header,
+						onChange: function(data){
+							let tmp = {};
+							if(typeof data == 'string' || data){
+								tmp[attr] = shortcode_escape(data);
+							}else{
+								tmp[attr] = '';
+							}
+							props.setAttributes(tmp);
+						}
 					}
 				)
 			);
-		},
+		}
 
-		save: function(props){
-			let data = '[atlant-index-calculator main_header="'+shortcode_escape(props.attributes.main_header)
-				+'" sub_header="'+shortcode_escape(props.attributes.sub_header)
-				+'"]'+props.attributes.content+'[/atlant-index-calculator]';
-			
-			return el(element.RawHTML, null, data);
-		},
-	});
+
+		return el('div',useBlockProps({className: 'components-placeholder'}),
+			el('label',
+				{className: 'components-placeholder__label'},
+				el(element.RawHTML, null, '<span class="dashicons dashicons-'+block_spec.icon+'"></span> '+block_spec.title)
+			),
+			inputs
+		);
+	};
+
+	block_spec.save = function(props){
+		function add_slashes(str){
+			str = str + '';
+			return str.replaceAll('"', '\u0022').replaceAll('\\', '\\\\').replace(/\u0000/g, '\\0');
+		}
+
+		let shortcode_name = block_name.replace('/', '-');
+		let content = '';
+
+		let data = '[' + shortcode_name;
+		for(let attr in block_inputs){
+			if(block_inputs[attr].hasOwnProperty('isContent') && block_inputs[attr]){
+				content = props.attributes[attr];
+				continue;
+			}
+
+			data += ' '+attr+'="' + shortcode_escape(props.attributes[attr])+'"';
+		}
+		data += ']'+content+'[/'+shortcode_name+']';
+
+		return el(element.RawHTML, null, data);
+	}
+
+	blocks.registerBlockType(block_name, block_spec);
 })(
 	window.wp.blocks,
 	window.wp.editor,
