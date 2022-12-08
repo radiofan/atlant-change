@@ -1,6 +1,15 @@
 (function(blocks, editor, element, blockEditor){
 	let el = element.createElement;
 	let useBlockProps = blockEditor.useBlockProps;
+	
+	function shortcode_escape(str){
+		str = str + '';
+		return str.replaceAll('"', '&#34;')
+			.replaceAll('\'', '&#39;')
+			.replaceAll('[', '&#91;')
+			.replaceAll(']', '&#93;')
+			.replace(/\u0000/g, '\\0');
+	}
 
 	blocks.registerBlockType('atlant/index-calculator', {
 		title: 'Блок с калькулятором на главной странице',
@@ -52,13 +61,8 @@
 		},
 
 		save: function(props){
-			function add_slashes(str){
-				str = str + '';
-				return str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
-			}
-			
-			let data = '[atlant-index-calculator main_header="'+add_slashes(props.attributes.main_header)
-				+'" sub_header="'+add_slashes(props.attributes.sub_header)
+			let data = '[atlant-index-calculator main_header="'+shortcode_escape(props.attributes.main_header)
+				+'" sub_header="'+shortcode_escape(props.attributes.sub_header)
 				+'"]'+props.attributes.content+'[/atlant-index-calculator]';
 			
 			return el(element.RawHTML, null, data);

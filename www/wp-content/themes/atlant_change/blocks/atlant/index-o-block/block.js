@@ -1,6 +1,15 @@
 (function(blocks, editor, element, blockEditor){
 	let el = element.createElement;
 	let useBlockProps = blockEditor.useBlockProps;
+
+	function shortcode_escape(str){
+		str = str + '';
+		return str.replaceAll('"', '&#34;')
+		.replaceAll('\'', '&#39;')
+		.replaceAll('[', '&#91;')
+		.replaceAll(']', '&#93;')
+		.replace(/\u0000/g, '\\0');
+	}
 	
 	let block_spec = {
 		title: 'Блок O на главной странице',
@@ -51,7 +60,7 @@
 						'aria-label': block_inputs[attr].header,
 						onChange: function(data){
 							let tmp = {};
-							tmp[attr] = data;
+							tmp[attr] = shortcode_escape(data);
 							props.setAttributes(tmp);
 						}
 					}
@@ -72,7 +81,7 @@
 	block_spec.save = function(props){
 		function add_slashes(str){
 			str = str + '';
-			return str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+			return str.replaceAll('"', '\u0022').replaceAll('\\', '\\\\').replace(/\u0000/g, '\\0');
 		}
 		
 		let shortcode_name = block_name.replace('/', '-');
@@ -85,7 +94,7 @@
 				continue;
 			}
 			
-			data += ' '+attr+'="' + add_slashes(props.attributes[attr])+'"';
+			data += ' '+attr+'="' + shortcode_escape(props.attributes[attr])+'"';
 		}
 		data += ']'+content+'[/'+shortcode_name+']';
 
