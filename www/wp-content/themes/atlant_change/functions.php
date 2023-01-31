@@ -25,7 +25,7 @@ add_theme_support('admin-bar', ['callback' => '__return_false']);
 add_theme_support('menus');
 add_theme_support('post-thumbnails', ['post', 'page']);
 set_post_thumbnail_size(520, 520);
-add_post_type_support('page', 'excerpt');
+add_post_type_support('page', ['excerpt', 'custom-fields']);
 
 register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижнее меню, левая часть', 'bottom_r' => 'Нижнее меню, правая часть', 'bottom_rules' => 'Нижнее меню, правила',]);
 
@@ -37,6 +37,7 @@ function atlant_change_scripts(){
 	wp_enqueue_script('atlant-change-scripts', get_template_directory_uri().'/js/scripts.js', ['jquery'], filemtime(get_template_directory().'/js/scripts.js'), 1);
 }
 
+//добавлячем категорию блоков гуттенберга для сайта
 add_filter('block_categories_all', 'atlant_register_block_category');
 function atlant_register_block_category($block_categories){
 
@@ -45,6 +46,7 @@ function atlant_register_block_category($block_categories){
 	return $block_categories;
 }
 
+//загружает блоки гуттенберга из /blocks/atlant/
 add_action('init', 'atlant_register_blocks');
 function atlant_register_blocks(){
 

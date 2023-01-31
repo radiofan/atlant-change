@@ -1,0 +1,39 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/for-partners-gain",
+	"title": "Блок Что Вы получаете",
+	"icon": "products",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Что Вы получаете при&nbsp;работе с&nbsp;нами?"
+		},
+		"label": {
+			"type": "string",
+			"default": "Безоговорочно, это практически 0% нашей маржи при&nbsp;обмене криптовалют."
+		},
+		"database": {
+			"type": "string",
+			"default": "Возможность заработка с&nbsp;приведенных Вами клиентов (особенно с&nbsp;постоянных)."
+		},
+		"heart": {
+			"type": "string",
+			"default": "Взаимная реклама на&nbsp;разных бордах и социальных сетях/мессенджерах."
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "Что Вы получаете при&nbsp;работе с&nbsp;нами?",
+			"label": "Безоговорочно, это практически 0% нашей маржи при&nbsp;обмене криптовалют.",
+			"database": "Возможность заработка с&nbsp;приведенных Вами клиентов (особенно с&nbsp;постоянных).",
+			"heart": "Взаимная реклама на&nbsp;разных бордах и социальных сетях/мессенджерах."
+		}
+	},
+	"editorScript": "file:./block.js"
+}
