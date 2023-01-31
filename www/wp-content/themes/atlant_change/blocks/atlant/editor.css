@@ -1,0 +1,16 @@
+.atlant-link-box{
+	display: flex;
+	margin-bottom: 20px;
+	grid-gap: 10px;
+	width: 100%;
+}
+.atlant-content-box{
+	margin-bottom: 20px;
+	width: 100%;
+	background-color: #eee;
+	min-height: 150px;
+	box-sizing: border-box;
+}
+.atlant-text-input{
+	margin-bottom: 20px;
+}

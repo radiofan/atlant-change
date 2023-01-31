@@ -11,12 +11,7 @@ function atlant__index_tech__block_render($args, $content){
 		'.(!empty($content) ? '
 		<div class="index-support-block__description">'.do_shortcode($content).'</div>
 		' : '').'
-		'.(!empty($args['button_text']) ? '
-		<a class="btn btn-submit"
-			href="'.(empty($args['button_href']) ? 'javascript:void(0)' : esc_attr($args['button_href'])).'"'
-			.(!empty($args['button_rel']) ? ' rel="'.esc_attr($args['button_rel']).'"' : '')
-			.'>'.esc_html($args['button_text']).'</a>
-		' : '').'
+		'.get_link_html_or_empty('button', 'btn btn-submit', $args).'
 	</div>
 	<div class="index-support-block__figures-block">
 		<div class="index-support-block__figures-container">

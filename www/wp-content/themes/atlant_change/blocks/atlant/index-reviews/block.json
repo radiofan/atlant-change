@@ -51,5 +51,6 @@
 			"content": "[atlant-reviews-view max=\"4\" pagination=\"0\" yellow-ring=\"1\"]"
 		}
 	},
-	"editorScript": "file:./block.js"
+	"editorScript": "file:./block.js",
+	"editorStyle": "file:./../editor.css"
 }

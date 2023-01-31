@@ -35,5 +35,6 @@
 			"heart": "Взаимная реклама на&nbsp;разных бордах и социальных сетях/мессенджерах."
 		}
 	},
-	"editorScript": "file:./block.js"
+	"editorScript": "file:./block.js",
+	"editorStyle": "file:./../editor.css"
 }

@@ -59,7 +59,7 @@ require_once 'header.php';
 			<div class="for-partners-feedback-block__links">
 				<h4>Наша группа telegram</h4>
 				<a class="disabled" href="javascript:void(0)">@ATLCHANGE</a>
-		</div>
+			</div>
 		</div>
 	</div>
 	<div class="for-partners-feedback-block__description">

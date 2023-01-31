@@ -1,0 +1,94 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/for-partners-feedback",
+	"title": "Блок Свяжитесь с нами",
+	"icon": "marker",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": "Свяжитесь с нами"
+		},
+		"content": {
+			"type": "string",
+			"default": "Основное направление нашего с Вами будущего партнерства - это привлечение трафика, заинтересованных людей в нашу, на данный момент небольшую, но очень перспективную, ЭКО-систему «ATLANT», на условиях партнерства.<br>\n\t\tПри обращении к нам за более подробной информацией, мы свяжемся с  каждым индивидуально и ответим на все интересующие Вас вопросы.<br>\n\t\tДавайте строить будущее вместе!<br>\n\t\t&ATL"
+		},
+		"sub_header_1": {
+			"type": "string",
+			"default": "Оператор"
+		},
+		"link_1_text": {
+			"type": "string",
+			"default": "@ATL_SUPPORT"
+		},
+		"link_1_href": {
+			"type": "string",
+			"default": ""
+		},
+		"link_1_rel": {
+			"type": "string",
+			"default": ""
+		},
+		"sub_header_2": {
+			"type": "string",
+			"default": "Бот для обмена"
+		},
+		"link_2_text": {
+			"type": "string",
+			"default": "@atlantch_bot"
+		},
+		"link_2_href": {
+			"type": "string",
+			"default": ""
+		},
+		"link_2_rel": {
+			"type": "string",
+			"default": ""
+		},
+		"sub_header_3": {
+			"type": "string",
+			"default": "Наша группа telegram"
+		},
+		"link_3_text": {
+			"type": "string",
+			"default": "@ATLCHANGE"
+		},
+		"link_3_href": {
+			"type": "string",
+			"default": ""
+		},
+		"link_3_rel": {
+			"type": "string",
+			"default": ""
+		},
+		"sub_header_4": {
+			"type": "string",
+			"default": ""
+		},
+		"link_4_text": {
+			"type": "string",
+			"default": ""
+		},
+		"link_4_href": {
+			"type": "string",
+			"default": ""
+		},
+		"link_4_rel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+		"attributes": {
+			"header": "Свяжитесь с нами",
+			"content": "Основное направление нашего с Вами будущего партнерства - это привлечение трафика, заинтересованных людей в нашу, на данный момент небольшую, но очень перспективную, ЭКО-систему «ATLANT», на условиях партнерства.<br>\n\t\tПри обращении к нам за более подробной информацией, мы свяжемся с  каждым индивидуально и ответим на все интересующие Вас вопросы.<br>\n\t\tДавайте строить будущее вместе!<br>\n\t\t&ATL"
+		}
+	},
+	"editorScript": "file:./block.js",
+	"editorStyle": "file:./../editor.css"
+}

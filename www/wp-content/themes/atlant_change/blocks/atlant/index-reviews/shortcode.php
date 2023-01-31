@@ -7,21 +7,10 @@ function atlant__index_reviews__block_render($args, $content){
 	'.(!empty($args['header']) ? '
 	<h2>'.esc_html($args['header']).'</h2>
 	' : '').'
-	<div class="index-feedback-block__links-block">
-		'.(!empty($args['review_set_text']) ? '
-		<a class="link"
-			href="'.(empty($args['review_set_href']) ? 'javascript:void(0)' : esc_attr($args['review_set_href'])).'"'
-			.(!empty($args['review_set_rel']) ? ' rel="'.esc_attr($args['review_set_rel']).'"' : '')
-			.'>'.esc_html($args['review_set_text']).'</a>
-		' : '').'
-		'.(!empty($args['reviews_text']) ? '
-		<a class="link"
-			href="'.(empty($args['reviews_href']) ? 'javascript:void(0)' : esc_attr($args['reviews_href'])).'"'
-			.(!empty($args['reviews_rel']) ? ' rel="'.esc_attr($args['reviews_rel']).'"' : '')
-			.'>'.esc_html($args['reviews_text']).'</a>
-		' : '').'
+	<div class="index-feedback-block__links-block">'.
+		get_link_html_or_empty('review_set', 'link', $args).
+		get_link_html_or_empty('reviews', 'link', $args).'
 	</div>
 	'.do_shortcode($content).'
-</section>
-	';
+</section>';
 }

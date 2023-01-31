@@ -37,37 +37,68 @@
 			header: 'Третье'
 		}
 	}
-	
+
 	block_spec.edit = function(props){
-		
+
 		let inputs = [];
-		
+
 		for(let attr in block_inputs){
 			inputs.push(
 				el('label', {className: 'components-placeholder__label'}, block_inputs[attr].header)
 			);
-			inputs.push(
-				el(block_inputs[attr].type,
-					{
-						className: 'blocks-shortcode__textarea',
-						style: block_inputs[attr].type == blockEditor.RichText ? {width:'100%', backgroundColor:'#eee', minHeight:'150px'} : {marginBottom:'20px'},
-						value: props.attributes[attr],
-						'aria-label': block_inputs[attr].header,
-						onChange: function(data){
-							let tmp = {};
-							if(typeof data == 'string' || data){
-								tmp[attr] = shortcode_escape(data);
-							}else{
-								tmp[attr] = '';
+			if(block_inputs[attr].hasOwnProperty('isLink') && block_inputs[attr].isLink){
+
+				let link_inputs = [];
+				let link_fields = {text:'Текст', href:'Ссылка', rel:'Отношение (rel) кнопки'};
+
+				for(let key in link_fields){
+					link_inputs.push(
+						el(
+							blockEditor.PlainText,
+							{
+								className: 'blocks-shortcode__textarea',
+								value: props.attributes[attr+'_'+key],
+								placeholder: link_fields[key],
+								onChange: function(data){
+									let tmp = {};
+									if(typeof data == 'string' || data){
+										tmp[attr+'_'+key] = shortcode_escape(data);
+									}else{
+										tmp[attr+'_'+key] = '';
+									}
+									props.setAttributes(tmp);
+								}
 							}
-							props.setAttributes(tmp);
+						)
+					);
+				}
+				inputs.push(el('div', {className: 'atlant-link-box'}, link_inputs));
+
+
+			}else{
+				inputs.push(
+					el(
+						block_inputs[attr].type,
+						{
+							className: 'blocks-shortcode__textarea' + (block_inputs[attr].type == blockEditor.RichText ? ' atlant-content-box' : ' atlant-text-input'),
+							value: props.attributes[attr],
+							'aria-label': block_inputs[attr].header,
+							onChange: function(data){
+								let tmp = {};
+								if(typeof data == 'string' || data){
+									tmp[attr] = shortcode_escape(data);
+								}else{
+									tmp[attr] = '';
+								}
+								props.setAttributes(tmp);
+							}
 						}
-					}
-				)
-			);
+					)
+				);
+			}
 		}
-		
-		
+
+
 		return el('div',useBlockProps({className: 'components-placeholder'}),
 			el('label',
 				{className: 'components-placeholder__label'},
@@ -78,13 +109,11 @@
 	};
 
 	block_spec.save = function(props){
-		function add_slashes(str){
-			str = str + '';
-			return str.replaceAll('"', '\u0022').replaceAll('\\', '\\\\').replace(/\u0000/g, '\\0');
-		}
-		
+
 		let shortcode_name = block_name.replace('/', '-');
 		let content = '';
+
+		let link_fields = {text:'Текст', href:'Ссылка', rel:'Отношение (rel) кнопки'};
 
 		let data = '[' + shortcode_name;
 		for(let attr in block_inputs){
@@ -92,7 +121,13 @@
 				content = props.attributes[attr];
 				continue;
 			}
-			
+			if(block_inputs[attr].hasOwnProperty('isLink') && block_inputs[attr]){
+				for(let key in link_fields){
+					data += ' '+attr+'_'+key+'="' + shortcode_escape(props.attributes[attr+'_'+key])+'"';
+				}
+				continue;
+			}
+
 			data += ' '+attr+'="' + shortcode_escape(props.attributes[attr])+'"';
 		}
 		data += ']'+content+'[/'+shortcode_name+']';
