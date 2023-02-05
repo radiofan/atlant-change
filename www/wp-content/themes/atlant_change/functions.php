@@ -53,6 +53,9 @@ add_theme_support('post-thumbnails', ['post', 'page']);
 set_post_thumbnail_size(520, 520);
 add_post_type_support('page', ['excerpt', 'custom-fields']);
 
+//портит шорткоды
+remove_filter('the_content', 'wptexturize');
+
 register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижнее меню, левая часть', 'bottom_r' => 'Нижнее меню, правая часть', 'bottom_rules' => 'Нижнее меню, правила',]);
 
 add_action('wp_enqueue_scripts', 'atlant_change_scripts');
