@@ -29,6 +29,6 @@
 			"right_column": "[atlant-change-calculator]"
 		}
 	},
-	"editorScript": "file:./block.js",
-	"editorStyle": "file:./editor.css"
+	"editorScript": ["file:./../blocks.js","file:./block.js"],
+	"editorStyle": "file:./../editor.css"
 }

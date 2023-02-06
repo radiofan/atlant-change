@@ -53,8 +53,9 @@ add_theme_support('post-thumbnails', ['post', 'page']);
 set_post_thumbnail_size(520, 520);
 add_post_type_support('page', ['excerpt', 'custom-fields']);
 
-//портит шорткоды
+//портит шорткоды, пусть обрабатывает последней
 remove_filter('the_content', 'wptexturize');
+add_filter('the_content', 'wptexturize', 100);
 
 register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижнее меню, левая часть', 'bottom_r' => 'Нижнее меню, правая часть', 'bottom_rules' => 'Нижнее меню, правила',]);
 
@@ -74,6 +75,8 @@ function atlant_register_block_category($block_categories){
 	
 	return $block_categories;
 }
+
+//wp_register_script('atlant-guttenberg-blocks', get_template_directory().'/blocks/atlant/blocks.js', ['wp-blocks', 'wp-element', 'wp-editor'], '0.0');
 
 //загружает блоки гуттенберга из /blocks/atlant/
 add_action('init', 'atlant_register_blocks');

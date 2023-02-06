@@ -25,6 +25,6 @@
 			"content": "[atlant-news max=\"2\"]"
 		}
 	},
-	"editorScript": "file:./block.js",
+	"editorScript": ["file:./../blocks.js","file:./block.js"],
 	"editorStyle": "file:./../editor.css"
 }

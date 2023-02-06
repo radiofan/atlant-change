@@ -30,6 +30,6 @@
 			"content": "[atlant-change-calculator][atlant-change-currency]"
 		}
 	},
-	"editorScript": "file:./block.js",
+	"editorScript": ["file:./../blocks.js","file:./block.js"],
 	"editorStyle": "file:./../editor.css"
 }

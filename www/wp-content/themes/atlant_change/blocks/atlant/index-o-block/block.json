@@ -38,6 +38,6 @@
 			"button_text": "К&nbsp;боту"
 		}
 	},
-	"editorScript": "file:./block.js",
+	"editorScript": ["file:./../blocks.js","file:./block.js"],
 	"editorStyle": "file:./../editor.css"
 }
