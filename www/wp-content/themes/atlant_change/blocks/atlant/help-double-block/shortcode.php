@@ -11,10 +11,10 @@ function atlant__help_double_block__block_render($args, $content){
 	' : '').'
 	<div class="help-change-block__container">
 		<div class="help-change-block__help-spoilers-block">
-			'.do_shortcode($right_column).'
+			'.do_shortcode($content).'
 		</div>
 		<div class="help-change-block__calculator-block">
-			'.do_shortcode($content).'
+			'.do_shortcode($right_column).'
 		</div>
 	</div>
 </section>';

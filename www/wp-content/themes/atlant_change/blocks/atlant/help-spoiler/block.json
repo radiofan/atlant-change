@@ -1,0 +1,26 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "atlant/help-spoiler",
+	"title": "Спойлер",
+	"icon": "editor-ul",
+	"category": "atlant",
+	"attributes": {
+		"header": {
+			"type": "string",
+			"default": ""
+		},
+		"content": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"className": false,
+		"customClassName": false
+	},
+	"example": {
+	},
+	"editorScript": ["file:./../blocks.js","file:./block.js"],
+	"editorStyle": "file:./../editor.css"
+}

@@ -17,7 +17,7 @@ const atlant_blocks = {
 	edit: function(props){
 		
 		let {el, react2str, InnerBlocks, useBlockProps, element, blockEditor, block_spec, block_name, block_inputs} = this;
-
+		
 		let inputs = [];
 
 		for(let attr in block_inputs){
@@ -53,6 +53,13 @@ const atlant_blocks = {
 				inputs.push(el('div', {className: 'atlant-link-box'}, link_inputs));
 
 			}else if(block_inputs[attr].hasOwnProperty('isBlocks') && block_inputs[attr].isBlocks){
+				if(!this.hasOwnProperty('props')){
+					this.props = {};
+				}
+				
+				props.setAttributes({id:props.clientId});//todo ебаный костыль, не могу отследить изменение innerblocks и навесить на него обработчик
+				this.props[props.clientId] = props;
+				
 				inputs.push(
 					el(
 						'div',
@@ -121,6 +128,12 @@ const atlant_blocks = {
 			}
 			if(block_inputs[attr].hasOwnProperty('isBlocks')){
 				content = react2str(InnerBlocks.Content());
+				if(this.hasOwnProperty('props')){
+					let super_props = this.props[props.attributes.id];
+					let tmp = {id: undefined};
+					tmp[attr] = content;
+					super_props.setAttributes(tmp);
+				}
 				continue;
 			}
 

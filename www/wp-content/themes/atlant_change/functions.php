@@ -76,8 +76,6 @@ function atlant_register_block_category($block_categories){
 	return $block_categories;
 }
 
-//wp_register_script('atlant-guttenberg-blocks', get_template_directory().'/blocks/atlant/blocks.js', ['wp-blocks', 'wp-element', 'wp-editor'], '0.0');
-
 //загружает блоки гуттенберга из /blocks/atlant/
 add_action('init', 'atlant_register_blocks');
 function atlant_register_blocks(){
