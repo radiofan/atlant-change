@@ -114,3 +114,116 @@ function atlant_register_blocks(){
 		register_block_type($blocks_path.$blocks_name[$i]);
 	}
 }
+
+
+add_action('customize_preview_init', 'atlant_customizer_js_file');
+function atlant_customizer_js_file(){
+	wp_enqueue_script('atlant-customizer', get_template_directory_uri().'/js/atlant-customizer.js', ['jquery','customize-preview'], '0.0', true);
+}
+
+add_action('customize_register', 'atlant_customize_register');
+function atlant_customize_register(WP_Customize_Manager $wp_customize){
+	
+	function add_link_inputs(WP_Customize_Manager $wp_customize, string $setting, string $section, string $text, $transport='postMessage', $text_default='', $href_default='', $rel_default=''){
+
+		$wp_customize->add_setting($setting.'_text', [
+			'default' => $text_default,
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting.'_text', [
+			'section' => $section,
+			'label' => $text.' - текст',
+			'type' => 'text'
+		]);
+		
+		$wp_customize->add_setting($setting.'_href', [
+			'default' => $href_default,
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting.'_href', [
+			'section' => $section,
+			'label' => $text.' - ссылка',
+			'type' => 'text'
+		]);
+
+		$wp_customize->add_setting($setting.'_rel', [
+			'default' => $rel_default,
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting.'_rel', [
+			'section' => $section,
+			'label' => $text.' - отношение',
+			'type' => 'text'
+		]);
+	}
+
+	$transport = 'postMessage';
+	
+	if($section = 'atlant_options'){
+
+		$wp_customize->add_section($section, [
+			'title' => 'Настройки темы',
+			'priority' => 200,
+			'description' => 'Настройки лого, и ссылок в шапке и подвале',
+		]);
+
+		$setting = 'atlant_logo';
+		$wp_customize->add_setting($setting, [
+			'default' => 0/*get_template_directory().'/assets/logo.png'*/,
+			'transport' => $transport
+		]);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control($wp_customize, $setting, [
+				'label' => 'Лого в шапке',
+				'settings' => $setting,
+				'section' => $section
+			])
+		);
+
+		$setting = 'atlant_logo_mobile';
+		$wp_customize->add_setting($setting, [
+			'default' => 0/*get_template_directory().'/assets/logo-mobile.png'*/,
+			'transport' => $transport
+		]);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control($wp_customize, $setting, [
+				'label' => 'Лого в шапке для моб',
+				'settings' => $setting,
+				'section' => $section
+			])
+		);
+
+		add_link_inputs($wp_customize, 'we_online', $section, 'Мы онлайн', $transport, '@ATL_SUPPORT');
+
+		$setting = 'connection_head_1';
+		$wp_customize->add_setting($setting, [
+			'default' => 'Оператор',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting, [
+			'section' => $section,
+			'label' => 'Связь Заголовок 1',
+			'type' => 'text'
+		]);
+		
+		add_link_inputs($wp_customize, 'connection_link_1', $section, 'Связь ссылка 1', $transport, '@atl_support');
+
+		$setting = 'connection_head_2';
+		$wp_customize->add_setting($setting, [
+			'default' => 'Бот для обмена',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting, [
+			'section' => $section,
+			'label' => 'Связь Заголовок 2',
+			'type' => 'text'
+		]);
+
+		add_link_inputs($wp_customize, 'connection_link_2', $section, 'Связь ссылка 2', $transport, '@atlantch_bot');
+	}
+}

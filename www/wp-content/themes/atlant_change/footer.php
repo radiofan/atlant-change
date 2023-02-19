@@ -1,3 +1,6 @@
+<?php
+$theme_mods = get_theme_mods();
+?>
 </main>
 <footer>
 	<nav class="navbar navbar-bottom container">
@@ -35,12 +38,20 @@
 				</div>
 				
 			</div>
-			<div class="navbar-bottom__menu">
+			<div class="navbar-bottom__menu navbar-bottom__menu_connection">
 				<h5>Связь</h5>
-				<span>Оператор</span>
-				<a href="javascript:void(0)">@atl_support</a>
-				<span>Бот для обмена</span>
-				<a href="javascript:void(0)">@atlantch_bot</a>
+				<?php
+				if(!empty($theme_mods['connection_head_1'])){
+					echo '<span>'.esc_html($theme_mods['connection_head_1']).'</span>';
+				}
+				?>
+				<?= get_link_html_or_empty('connection_link_1', '', $theme_mods) ?>
+				<?php
+				if(!empty($theme_mods['connection_head_2'])){
+					echo '<span>'.esc_html($theme_mods['connection_head_2']).'</span>';
+				}
+				?>
+				<?= get_link_html_or_empty('connection_link_2', '', $theme_mods) ?>
 			</div>
 			<div class="navbar-bottom__menu">
 				<h5>О правилах</h5>

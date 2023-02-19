@@ -1,3 +1,6 @@
+<?php
+$theme_mods = get_theme_mods();
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -18,8 +21,8 @@
 	<nav class="navbar navbar-top container h6<?= (!is_front_page() ? ' bg-color--not-white' : ''); ?>">
 		<div class="navbar-top__logo">
 			<a href="<?= set_href(!is_front_page(), home_url('/')); ?>">
-				<img class="navbar-top__logo__img navbar-top__logo__img--desktop" src="<?= get_template_directory_uri(); ?>/assets/logo.png" alt="Лого">
-				<img class="navbar-top__logo__img navbar-top__logo__img--mobile" src="<?= get_template_directory_uri(); ?>/assets/logo-mobile.png" alt="Лого">
+				<img class="navbar-top__logo__img navbar-top__logo__img--desktop" src="<?= esc_attr($theme_mods['atlant_logo'] ?? get_template_directory_uri().'/assets/logo.png') ?>" alt="Лого">
+				<img class="navbar-top__logo__img navbar-top__logo__img--mobile" src="<?= esc_attr($theme_mods['atlant_logo_mobile'] ?? get_template_directory_uri().'/assets/logo-mobile.png') ?>" alt="Лого">
 			</a>
 		</div>
 		<div class="collapse navbar-top__collapse" id="menu-top">
@@ -38,10 +41,16 @@
 				?>
 			</div>
 			<div class="navbar-top__addition-items">
+				<?php
+				if(!empty($theme_mods['we_online_text'])):
+				?>
 				<div class="navbar-top__addition-item navbar-top__online-button">
 					<p>Мы онлайн <span class="icon-online"></span></p>
-					<p><a href="javascript:void(0)">@ATL_SUPPORT</a></p>
+					<p><?= get_link_html_or_empty('we_online', '', $theme_mods) ?></p>
 				</div>
+				<?php
+				endif;
+				?>
 				<a href="#modal__login" rel="modal:open" class="navbar-top__addition-item navbar-top__account-button">
 					Личный кабинет
 				</a>
