@@ -67,11 +67,11 @@ $theme_mods = get_theme_mods();
 <main>
 	
 <?php
-if(!is_front_page()):
+if(!is_front_page() && !is_single()):
 ?>
 	
 	<div class="page-header container">
-		<h3><?= get_the_title() ?></h3>
+		<h3><?php single_post_title(); ?></h3>
 	</div>
 
 <?php

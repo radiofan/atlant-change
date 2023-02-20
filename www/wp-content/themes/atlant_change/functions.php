@@ -44,6 +44,16 @@ function get_link_html_or_empty(string $name, string $class, array $args=[]): st
 	return $ret;
 }
 
+function get_share_button(){
+	return '
+	<button class="news-article-block__btn-share">Поделиться
+		<svg class="news-article-block__btn-share__icon">
+			<use xlink:href="#share"></use>
+		</svg>
+	</button>
+	';
+}
+
 
 add_theme_support('automatic-feed-links');
 add_theme_support('title-tag');
@@ -57,6 +67,12 @@ add_post_type_support('page', ['excerpt', 'custom-fields']);
 remove_filter('the_content', 'wptexturize');
 add_filter('the_content', 'wptexturize', 100);
 
+//удаляет атрибуты размера картинки
+add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3);
+function remove_thumbnail_dimensions($html, $post_id, $post_image_id){
+	return preg_replace('/(width|height)=\"\d*\"\s/', '', $html);
+}
+
 register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижнее меню, левая часть', 'bottom_r' => 'Нижнее меню, правая часть', 'bottom_rules' => 'Нижнее меню, правила',]);
 
 add_action('wp_enqueue_scripts', 'atlant_change_scripts');
@@ -65,6 +81,10 @@ function atlant_change_scripts(){
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquery-modal', get_template_directory_uri().'/js/jquery.modal.js', ['jquery']);
 	wp_enqueue_script('atlant-change-scripts', get_template_directory_uri().'/js/scripts.js', ['jquery'], filemtime(get_template_directory().'/js/scripts.js'), 1);
+	
+	if(is_home()){
+		wp_enqueue_script('atlant-loadmore', get_template_directory_uri().'/js/loadmore.js', ['jquery'], filemtime(get_template_directory().'/js/loadmore.js'), 1);
+	}
 }
 
 //добавлячем категорию блоков гуттенберга для сайта
@@ -115,7 +135,7 @@ function atlant_register_blocks(){
 	}
 }
 
-
+// добавляем настройки темы 
 add_action('customize_preview_init', 'atlant_customizer_js_file');
 function atlant_customizer_js_file(){
 	wp_enqueue_script('atlant-customizer', get_template_directory_uri().'/js/atlant-customizer.js', ['jquery','customize-preview'], '0.0', true);
@@ -226,4 +246,27 @@ function atlant_customize_register(WP_Customize_Manager $wp_customize){
 
 		add_link_inputs($wp_customize, 'connection_link_2', $section, 'Связь ссылка 2', $transport, '@atlantch_bot');
 	}
+}
+
+// обработчик подзагрузки новостей
+add_action('wp_ajax_atlant_loadmore', 'atlant_loadmore_ajax');
+add_action('wp_ajax_nopriv_atlant_loadmore', 'atlant_loadmore_ajax');
+function atlant_loadmore_ajax(){
+	global $wp_query;
+	$paged = $_POST['paged'] ?? 1;
+	$paged = absint($paged) + 1;
+
+	$args = array(
+		'paged' => $paged,
+		'post_status' => 'publish'
+	);
+
+	query_posts($args);
+
+	while(have_posts()){
+		the_post();
+		get_template_part('news-template', null, ['need_link' => true]);
+	}
+
+	die();
 }
