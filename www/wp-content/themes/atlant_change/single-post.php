@@ -1,4 +1,5 @@
 <?php
+if(!defined('ABSPATH')) die();
 get_header();
 
 if(have_posts()){
@@ -7,6 +8,6 @@ if(have_posts()){
 		get_template_part('news-template', null, ['need_link' => false]);
 	}
 }
-//todo шорткод смотрите еще
+echo do_shortcode('[atlant-more-news max="3"]');
 get_footer();
 ?>

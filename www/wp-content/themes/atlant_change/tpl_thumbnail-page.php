@@ -3,6 +3,7 @@
 Template Name: Страница с круглой картинкой
 Template Post Type: page
 */
+if(!defined('ABSPATH')) die();
 
 get_header();
 

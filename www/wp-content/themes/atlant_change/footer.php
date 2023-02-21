@@ -1,4 +1,5 @@
 <?php
+if(!defined('ABSPATH')) die();
 $theme_mods = get_theme_mods();
 ?>
 </main>

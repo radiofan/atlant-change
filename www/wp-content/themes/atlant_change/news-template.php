@@ -1,3 +1,7 @@
+<?php
+if(!defined('ABSPATH')) die();
+?>
+
 <section class="news-article-block container" id="post-<?= $post->ID ?>">
 	<div class="news-article-block__news-container">
 		<div class="news-article-block__above-header">

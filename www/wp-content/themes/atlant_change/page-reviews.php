@@ -1,4 +1,5 @@
 <?php
+if(!defined('ABSPATH')) die();
 get_header();
 ?>
 <section class="feedback-reviews-block container">

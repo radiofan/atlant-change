@@ -1,4 +1,5 @@
 <?php
+if(!defined('ABSPATH')) die();
 get_header();
 
 if(have_posts()){

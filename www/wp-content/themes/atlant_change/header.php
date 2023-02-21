@@ -1,5 +1,6 @@
 <?php
 $theme_mods = get_theme_mods();
+if(!defined('ABSPATH')) die();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
