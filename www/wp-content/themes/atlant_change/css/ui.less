@@ -130,10 +130,16 @@ select{
 		background-color:transparent;
 		.trs(color, 0.1);
 
-		&:not(:disabled,.disabled):hover{
+		&:hover:enabled{
 			color:@cYellow;
 		}
-		&:not(:disabled,.disabled):active{
+		&:hover:not(.disabled){
+			color:@cYellow;
+		}
+		&:active:enabled{
+			color:inherit;
+		}
+		&:active:not(.disabled){
 			color:inherit;
 		}
 		&.active{
@@ -141,6 +147,7 @@ select{
 		}
 		&:disabled{
 			color:@cGray;
+			cursor:default;
 		}
 	}
 }

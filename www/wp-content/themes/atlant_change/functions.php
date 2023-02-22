@@ -25,6 +25,12 @@ register_nav_menus(['top' => 'Верхнее меню', 'bottom_l' => 'Нижн�
 remove_filter('the_content', 'wptexturize');
 add_filter('the_content', 'wptexturize', 100);
 
+//заменяет […]
+add_filter('excerpt_more', 'atlant_excerpt_more_filter');
+function atlant_excerpt_more_filter($more_string){
+	return ' <code>…</code>';
+}
+
 //удаляет атрибуты размера картинки
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3);
 function remove_thumbnail_dimensions($html, $post_id, $post_image_id){
@@ -38,6 +44,9 @@ function atlant_change_scripts(){
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquery-modal', get_template_directory_uri().'/js/jquery.modal.js', ['jquery']);
 	wp_enqueue_script('atlant-change-scripts', get_template_directory_uri().'/js/scripts.js', ['jquery'], filemtime(get_template_directory().'/js/scripts.js'), 1);
+	wp_register_script('atlant-news', get_template_directory_uri().'/js/atlant-news.js', ['jquery'], filemtime(get_template_directory().'/js/atlant-news.js'), 1);
+
+	wp_add_inline_script('jquery', 'const atlant_ajax_url = "'.esc_attr(admin_url('admin-ajax.php')).'";');
 	
 	if(is_home()){
 		wp_enqueue_script('atlant-loadmore', get_template_directory_uri().'/js/loadmore.js', ['jquery'], filemtime(get_template_directory().'/js/loadmore.js'), 1);

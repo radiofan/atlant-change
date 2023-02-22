@@ -66,10 +66,16 @@
 		.sq(24px);
 		stroke:@cBlack;
 
-		&:not(:disabled,.disabled):hover{
+		&:not(:disabled):hover{
 			stroke:@cYellow;
 		}
-		&:not(:disabled,.disabled):active{
+		&:not(.disabled):hover{
+			stroke:@cYellow;
+		}
+		&:not(:disabled):active{
+			stroke:@cBlack;
+		}
+		&:not(.disabled):active{
 			stroke:@cBlack;
 		}
 		&.active{

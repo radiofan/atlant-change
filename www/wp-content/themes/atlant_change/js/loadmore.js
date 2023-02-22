@@ -36,8 +36,8 @@ jQuery(function($){
 				},
 				error: function(jqXHR, exception){
 					$loadmore.html('<p>Не удалось получить новости.</p><p>Попробуйте позже</p>');
-					console.log(jqXHR);
-					console.log(exception);
+					//console.log(jqXHR);
+					//console.log(exception);
 				},
 				complete:function(){
 					loader_active = false;
