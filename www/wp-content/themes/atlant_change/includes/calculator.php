@@ -82,7 +82,7 @@ class atlant_currency_calculator{
 			]
 		);
 		
-		$fields = ['code' => 'Код валюты', 'text' => 'Название валюты', 'buy_formula' => 'Формула расчета цены покупки', 'send_formula' => 'Формула расчета цены продажи'];
+		$fields = ['code' => 'Код валюты', 'text' => 'Название валюты', 'buy_formula' => 'Формула расчета цены покупки', 'sale_formula' => 'Формула расчета цены продажи'];
 
 		$currencies = get_option('atlant_calculator_data', []);
 		$len = sizeof($currencies);
@@ -160,7 +160,7 @@ class atlant_currency_calculator{
 				continue;
 			}
 			
-			$add_data = ['code' => '', 'text' => '', 'buy_formula' => '', 'send_formula' => ''];
+			$add_data = ['code' => '', 'text' => '', 'buy_formula' => '', 'sale_formula' => ''];
 			foreach($add_data as $key => $val){
 				$add_data[$key] = isset($new_data[$i][$key]) ? (string) $new_data[$i][$key] : '';
 			}
@@ -169,7 +169,7 @@ class atlant_currency_calculator{
 				if(	$add_data['code'] === '' &&
 					$add_data['text'] === '' &&
 					$add_data['buy_formula'] === '' &&
-					$add_data['send_formula'] === ''){
+					$add_data['sale_formula'] === ''){
 					continue;
 				}
 			}
@@ -212,12 +212,12 @@ class atlant_currency_calculator{
 				continue;
 			}
 
-			if($add_data['send_formula'] === ''){
+			if($add_data['sale_formula'] === ''){
 				add_settings_error($setting_name, $setting_name, 'Формула продажи валюты #'.$i.' отсутствует');
 				continue;
 			}
 			try{
-				$matex->execute($add_data['send_formula']);
+				$matex->execute($add_data['sale_formula']);
 			}catch(Exception $ex){
 				add_settings_error($setting_name, $setting_name, 'Формула продажи валюты #'.$i.' не верна: '.$ex->getMessage());
 				continue;
@@ -253,8 +253,8 @@ class atlant_currency_calculator{
 		echo '<textarea type="text" name="atlant_calculator_data['.$args['currency_ind'].'][buy_formula]" cols="100" rows="10" style="font-family:\'courier new\', monospace;">'
 			.esc_html($args['val']).'</textarea>';
 	}
-	public static function view_currency_send_formula($args){
-		echo '<textarea type="text" name="atlant_calculator_data['.$args['currency_ind'].'][send_formula]" cols="100" rows="10" style="font-family:\'courier new\', monospace;">'
+	public static function view_currency_sale_formula($args){
+		echo '<textarea type="text" name="atlant_calculator_data['.$args['currency_ind'].'][sale_formula]" cols="100" rows="10" style="font-family:\'courier new\', monospace;">'
 			.esc_html($args['val']).'</textarea>';
 	}
 
@@ -318,7 +318,7 @@ class atlant_currency_calculator{
 				'code' => $code,
 				'price' => ((float)$new_currencies[$i]['price']) * $usdt_cost,
 				'buy_price' => $matex->execute($atlant_calculator_data[$ind]['buy_formula']),
-				'send_price' => $matex->execute($atlant_calculator_data[$ind]['send_formula']),
+				'sale_price' => $matex->execute($atlant_calculator_data[$ind]['sale_formula']),
 			];
 
 			$currencies[$code] = $currency_data;
@@ -330,7 +330,7 @@ class atlant_currency_calculator{
 				'code' => 'USDT',
 				'price' => $usdt_cost,
 				'buy_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['buy_formula']),
-				'send_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['send_formula']),
+				'sale_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['sale_formula']),
 			];
 
 			$currencies['USDT'] = $currency_data;
@@ -367,6 +367,7 @@ function atlant_deactivate_theme($old_name){
 //создаем страницу с настройками калькулятора
 add_action('admin_init', ['atlant_currency_calculator', 'init_currency_settings']);
 add_action('admin_menu', ['atlant_currency_calculator', 'add_calculator_page']);
+
 add_shortcode('atlant-change-currency', 'atlant__change_currency__block_render');
 function atlant__change_currency__block_render($args, $content){
 	$calculator_data = get_option('atlant_calculator_data', []);
@@ -391,7 +392,7 @@ function atlant__change_currency__block_render($args, $content){
 				<tr>
 					<td>'.esc_html($calculator_data[$i]['text']).'</td>
 					<td>'.$currencies_data['currencies'][$code]['buy_price'].'&nbsp;₽</td>
-					<td>'.$currencies_data['currencies'][$code]['send_price'].'&nbsp;₽</td>
+					<td>'.$currencies_data['currencies'][$code]['sale_price'].'&nbsp;₽</td>
 				</tr>';
 	}
 
@@ -408,3 +409,40 @@ function atlant__change_currency__block_render($args, $content){
 	return $html;
 }
 
+
+add_shortcode('atlant-change-calculator', 'atlant__change_calculator__block_render');
+function atlant__change_calculator__block_render($args, $content){
+	$calculator_data = get_option('atlant_calculator_data', []);
+	$currencies_data = get_option('atlant_currencies_data', []);
+	
+	wp_enqueue_script('atlant-calculator');
+	
+	$html = '
+	<form class="calculator-form">
+		<div class="select">
+			<select name="type" class="calculator-form__type-select">
+				<option value="buy" selected="selected">Купить</option>
+				<option value="sale">Продать</option>
+			</select>
+		</div>
+		<div class="select">
+			<select name="currency" class="calculator-form__currency-select">';
+	
+	$len = sizeof($calculator_data);
+	for($i=0; $i<$len; $i++){
+		$code = $calculator_data[$i]['code'];
+		$html .= '<option value="'.$code.'" data-buy-price="'.$currencies_data['currencies'][$code]['buy_price'].'" data-sale-price="'.$currencies_data['currencies'][$code]['sale_price'].'">'.esc_html($calculator_data[$i]['text']).'</option>';
+	}
+
+	$html .= '
+			</select>
+		</div>
+		<input type="text" name="value" class="calculator-form__value-input" value="0">
+		<div class="calculator-form__submit-section h5">
+			<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0&nbsp;₽</span></div>
+			<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
+		</div>
+	</form>';
+	
+	return $html;
+}

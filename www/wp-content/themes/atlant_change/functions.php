@@ -43,6 +43,7 @@ function atlant_change_scripts(){
 	wp_enqueue_script('jquery-modal', get_template_directory_uri().'/js/jquery.modal.js', ['jquery']);
 	wp_enqueue_script('atlant-change-scripts', get_template_directory_uri().'/js/scripts.js', ['jquery'], filemtime(get_template_directory().'/js/scripts.js'), 1);
 	wp_register_script('atlant-news', get_template_directory_uri().'/js/atlant-news.js', ['jquery'], filemtime(get_template_directory().'/js/atlant-news.js'), 1);
+	wp_register_script('atlant-calculator', get_template_directory_uri().'/js/atlant-calculator.js', ['jquery'], filemtime(get_template_directory().'/js/atlant-calculator.js'), 1);
 
 	wp_add_inline_script('jquery', 'const atlant_ajax_url = "'.esc_attr(admin_url('admin-ajax.php')).'";');
 	
