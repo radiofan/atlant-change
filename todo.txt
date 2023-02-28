@@ -34,7 +34,7 @@ https://wp-kama.ru/function/add_theme_support#starter-content
 https://wp-kama.ru/handbook/theme/customize-api
 
 [atlant-change-calculator]
-[atlant-change-currency]
++[atlant-change-currency]
 [atlant-reviews-view max="4" pagination="0" yellow-ring="1"]
 +[atlant-news max="2"]
 +[atlant-more-news max="3"]

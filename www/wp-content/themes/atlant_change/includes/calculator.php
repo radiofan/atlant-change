@@ -325,7 +325,7 @@ class atlant_currency_calculator{
 		}
 		
 		if($usdt_ind != -1){
-			$matex->variables['currency'] = (float)1;
+			$matex->variables['currency'] = $usdt_cost;
 			$currency_data = [
 				'code' => 'USDT',
 				'price' => $usdt_cost,
@@ -367,4 +367,44 @@ function atlant_deactivate_theme($old_name){
 //создаем страницу с настройками калькулятора
 add_action('admin_init', ['atlant_currency_calculator', 'init_currency_settings']);
 add_action('admin_menu', ['atlant_currency_calculator', 'add_calculator_page']);
+add_shortcode('atlant-change-currency', 'atlant__change_currency__block_render');
+function atlant__change_currency__block_render($args, $content){
+	$calculator_data = get_option('atlant_calculator_data', []);
+	$currencies_data = get_option('atlant_currencies_data', []);
+	
+	$html = '
+	<div class="index-calculator-block__table-block">
+		<table>
+			<thead>
+				<tr>
+					<th>Валюта</th>
+					<th>Покупка</th>
+					<th>Продажа</th>
+				</tr>
+			</thead>
+			<tbody>';
+	
+	$len = sizeof($calculator_data);
+	for($i=0; $i<$len; $i++){
+		$code = $calculator_data[$i]['code'];
+		$html .= '
+				<tr>
+					<td>'.esc_html($calculator_data[$i]['text']).'</td>
+					<td>'.$currencies_data['currencies'][$code]['buy_price'].'&nbsp;₽</td>
+					<td>'.$currencies_data['currencies'][$code]['send_price'].'&nbsp;₽</td>
+				</tr>';
+	}
+
+	$html .= '
+			</tbody>
+		</table>';
+	if(isset($currencies_data['updated_time'])){
+		$html .= '<div class="index-calculator-block__table-addition">Обновлено '.$currencies_data['updated_time']->format('d.m.y').'</div>';
+	}
+
+	$html .= '
+	</div>';
+	
+	return $html;
+}
 
