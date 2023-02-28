@@ -4,7 +4,6 @@ class atlant_currency_calculator{
 	
 	const CURRENCY_PAGE_NAME = 'atlant_currency_menu';
 	const BINANCE_API_URL = 'https://api.binance.com/api/v3/ticker/price';
-	const CBR_API_URL = 'http://www.cbr.ru/scripts/XML_daily.asp';
 	
 	public static function update_crypto_currency(){
 		self::update_currencies(get_option('atlant_calculator_data', [])); 
@@ -38,18 +37,15 @@ class atlant_currency_calculator{
 			return;
 		}
 
-		$atlant_rub_usd = get_option('atlant_rub_usd', ['updated_time' => new DateTimeImmutable('1970-01-01', wp_timezone()), 'price' => 1]);
 
 		echo '<div class="wrap">
 			<h2>'.get_admin_page_title().'</h2>';
 		
 		settings_errors();
 		
-		echo 'Текущий курс доллара: '.$atlant_rub_usd['price'].' руб. ('.$atlant_rub_usd['updated_time']->format('Y.m.d H:i:s').')</br>
-			Доступные переменные -
+		echo 'Доступные переменные -
 			<ul>
-				<li><code>float currency</code> - текущая стоимость 1 валюты в долларах США (www.binance.com)</li>
-				<li><code>float rub</code> - текущая стоимость доллара США в рублях (www.cbr.ru)</li>
+				<li><code>float currency</code> - текущая стоимость 1 валюты в рублях (валюта -> USDT -> руб) (www.binance.com)</li>
 			</ul>
 			Доступные функции -
 			<ul>
@@ -153,7 +149,6 @@ class atlant_currency_calculator{
 
 		$matex = new \Matex\Evaluator();
 		$matex->variables['currency'] = 1.0;
-		$matex->variables['rub'] = 1.0;
 		
 		$data = [];
 
@@ -244,7 +239,7 @@ class atlant_currency_calculator{
 
 		$currencies = $atlant_currencies_data['currencies'];
 		if(isset($currencies[$args['code']])){
-			echo 'Текущий курс '.$args['code'].' '.$currencies[$args['code']]['price'].'$ ('.$atlant_currencies_data['updated_time']->format('Y.m.d H:i:s').')';
+			echo 'Текущий курс '.$args['code'].' '.$currencies[$args['code']]['price'].' руб. (валюта -> USDT -> руб) ('.$atlant_currencies_data['updated_time']->format('Y.m.d H:i:s').')';
 		}
 	}
 
@@ -268,8 +263,6 @@ class atlant_currency_calculator{
 	 * @return bool - удалось ли обновить
 	 */
 	protected static function update_currencies($atlant_calculator_data){
-		$rubble = self::update_rubble();
-		
 		$usdt_arr = [];
 		$usdt_ind = -1;
 		$len = sizeof($atlant_calculator_data);
@@ -281,6 +274,8 @@ class atlant_currency_calculator{
 			}
 			$usdt_arr[$currency['code'].'USDT'] = $i;
 		}
+
+		$usdt_arr['USDTRUB'] = -1;
 		
 		$query = json_encode(array_keys($usdt_arr));
 		$result = wp_remote_get(self::BINANCE_API_URL.'?symbols='.$query, [
@@ -297,20 +292,31 @@ class atlant_currency_calculator{
 		$time_updated = current_datetime();
 		
 		$new_currencies = json_decode($result['body'], true);
+
+		$usdt_cost = 1;
+		$len = sizeof($new_currencies);
+		for($i=0; $i<$len; $i++){
+			if($new_currencies[$i]['symbol'] == 'USDTRUB'){
+				$usdt_cost = (float)$new_currencies[$i]['price'];
+				unset($new_currencies[$i]);
+				break;
+			}
+		}
+		$new_currencies = array_values($new_currencies);
+		unset($usdt_arr['USDTRUB']);
+		
 		
 		$currencies = [];
-		
 		$matex = new \Matex\Evaluator();
-		$matex->variables['rub'] = $rubble;
 		
 		$len = sizeof($new_currencies);
 		for($i=0; $i<$len; $i++){
 			$ind = $usdt_arr[$new_currencies[$i]['symbol']];
 			$code = $atlant_calculator_data[$ind]['code'];
-			$matex->variables['currency'] = (float)$new_currencies[$i]['price'];
+			$matex->variables['currency'] = ((float)$new_currencies[$i]['price']) * $usdt_cost;
 			$currency_data = [
 				'code' => $code,
-				'price' => (float)$new_currencies[$i]['price'],
+				'price' => ((float)$new_currencies[$i]['price']) * $usdt_cost,
 				'buy_price' => $matex->execute($atlant_calculator_data[$ind]['buy_formula']),
 				'send_price' => $matex->execute($atlant_calculator_data[$ind]['send_formula']),
 			];
@@ -322,7 +328,7 @@ class atlant_currency_calculator{
 			$matex->variables['currency'] = (float)1;
 			$currency_data = [
 				'code' => 'USDT',
-				'price' => (float)1,
+				'price' => $usdt_cost,
 				'buy_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['buy_formula']),
 				'send_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['send_formula']),
 			];
@@ -336,48 +342,6 @@ class atlant_currency_calculator{
 		], false);
 		
 		return true;
-	}
-	
-	protected static function update_rubble(){
-		$rub_usd_data = get_option('atlant_rub_usd', ['updated_time' => new DateTimeImmutable('1970-01-01', wp_timezone()), 'price' => 1]);
-		$result = wp_remote_get(self::CBR_API_URL, [
-			'redirection' => 0,
-			'user-agent' => 'Atlant Change php parser',
-			'sslverify' => 0,
-			'timeout' => 300
-		]);
-
-		if($result['response']['code'] != 200){
-			return $rub_usd_data['price'];
-		}
-
-		$result = $result['body'];
-		$result = iconv('windows-1251', 'utf-8', $result);
-		
-		$matches = [];
-		preg_match('#<Valute[^>]*?ID=["\']R01235["\'][^>]*>(.*?)</Valute>#iu', $result, $matches);
-		if(!isset($matches[1])){
-			return $rub_usd_data['price'];
-		}
-		$result = $matches[1];
-		
-		preg_match('#<Nominal[^>]*>(.*?)</Nominal>#iu', $result, $matches);
-		if(!isset($matches[1])){
-			return $rub_usd_data['price'];
-		}
-		$nominal = absint($matches[1]);
-		
-		preg_match('#<Value[^>]*>(.*?)</Value>#iu', $result, $matches);
-		if(!isset($matches[1])){
-			return $rub_usd_data['price'];
-		}
-		$usd = (float)str_replace(',', '.', $matches[1]);
-		$rub_usd_data['updated_time'] = current_datetime();
-		$rub_usd_data['price'] = $usd / $nominal;
-		
-		update_option('atlant_rub_usd', $rub_usd_data, false);
-		
-		return $rub_usd_data['price'];
 	}
 }
 
@@ -398,7 +362,6 @@ function atlant_deactivate_theme($old_name){
 	wp_unschedule_hook('atlant_cron_update_crypto_currency');
 	delete_option('atlant_calculator_data');
 	delete_option('atlant_currencies_data');
-	delete_option('atlant_rub_usd');
 }
 
 //создаем страницу с настройками калькулятора
