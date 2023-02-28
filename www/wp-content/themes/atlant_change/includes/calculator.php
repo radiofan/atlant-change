@@ -4,10 +4,10 @@ class atlant_currency_calculator{
 	
 	const CURRENCY_PAGE_NAME = 'atlant_currency_menu';
 	const BINANCE_API_URL = 'https://api.binance.com/api/v3/ticker/price';
+	const CBR_API_URL = 'http://www.cbr.ru/scripts/XML_daily.asp';
 	
 	public static function update_crypto_currency(){
-
-
+		self::update_currencies(get_option('atlant_calculator_data', [])); 
 	}
 
 	public static function add_calculator_page(){
@@ -38,12 +38,15 @@ class atlant_currency_calculator{
 			return;
 		}
 
+		$atlant_rub_usd = get_option('atlant_rub_usd', ['updated_time' => new DateTimeImmutable('1970-01-01', wp_timezone()), 'price' => 1]);
+
 		echo '<div class="wrap">
 			<h2>'.get_admin_page_title().'</h2>';
 		
 		settings_errors();
 		
-		echo 'Доступные переменные -
+		echo 'Текущий курс доллара: '.$atlant_rub_usd['price'].' руб. ('.$atlant_rub_usd['updated_time']->format('Y.m.d H:i:s').')</br>
+			Доступные переменные -
 			<ul>
 				<li><code>float currency</code> - текущая стоимость 1 валюты в долларах США (www.binance.com)</li>
 				<li><code>float rub</code> - текущая стоимость доллара США в рублях (www.cbr.ru)</li>
@@ -94,7 +97,7 @@ class atlant_currency_calculator{
 				'Настройки для "'.$currencies[$i]['text'].'"',
 				[__CLASS__, 'view_section_description'],
 				self::CURRENCY_PAGE_NAME,
-				['currency_ind' => $i]
+				['currency_ind' => $i, 'code' => $currencies[$i]['code'], 'after_section' => '<hr>']
 			);
 			
 			foreach($fields as $f_code => $f_text){
@@ -181,7 +184,7 @@ class atlant_currency_calculator{
 				continue;
 			}
 			//если код отсутсвует в памяти, проверим его
-			if(!isset($old_codes[$add_data['code']])){
+			if(!isset($old_codes[$add_data['code']]) && $add_data['code'] !== 'USDT'){
 				$code_usdt = $add_data['code'].'USDT';
 				if(!preg_match('/^[A-Z0-9-_.]{1,20}$/', $code_usdt)){
 					add_settings_error($setting_name, $setting_name, 'Код валюты #'.$i.' ('.$add_data['code'].') не удовлетворяет правило ^[A-Z0-9-_.]{1,20}$');
@@ -199,7 +202,6 @@ class atlant_currency_calculator{
 					add_settings_error($setting_name, $setting_name, 'Код валюты #'.$i.' ('.$add_data['code'].') не удалось проверить, ответ сервера: '.esc_html($result['body']));
 					continue;
 				}
-				//todo возможно добавить обновление цены
 			}
 
 			$add_data['text'] = esc_html(trim($add_data['text']));
@@ -228,13 +230,22 @@ class atlant_currency_calculator{
 			
 			$data[] = $add_data;
 		}
-		
-		//todo вызвать обновление курсов
+
+
+		self::update_currencies($data);
 		return $data;
 	}
 
 	public static function view_section_description($args){
-		echo 'абоба';
+		$atlant_currencies_data = get_option('atlant_currencies_data', []);
+		if(!isset($atlant_currencies_data['currencies'])){
+			return;
+		}
+
+		$currencies = $atlant_currencies_data['currencies'];
+		if(isset($currencies[$args['code']])){
+			echo 'Текущий курс '.$args['code'].' '.$currencies[$args['code']]['price'].'$ ('.$atlant_currencies_data['updated_time']->format('Y.m.d H:i:s').')';
+		}
 	}
 
 	public static function view_currency_code($args){
@@ -250,6 +261,123 @@ class atlant_currency_calculator{
 	public static function view_currency_send_formula($args){
 		echo '<textarea type="text" name="atlant_calculator_data['.$args['currency_ind'].'][send_formula]" cols="100" rows="10" style="font-family:\'courier new\', monospace;">'
 			.esc_html($args['val']).'</textarea>';
+	}
+
+	/**
+	 * @param $atlant_calculator_data
+	 * @return bool - удалось ли обновить
+	 */
+	protected static function update_currencies($atlant_calculator_data){
+		$rubble = self::update_rubble();
+		
+		$usdt_arr = [];
+		$usdt_ind = -1;
+		$len = sizeof($atlant_calculator_data);
+		for($i=0; $i<$len; $i++){
+			$currency = $atlant_calculator_data[$i];
+			if($currency['code'] === 'USDT'){
+				$usdt_ind = $i;
+				continue;
+			}
+			$usdt_arr[$currency['code'].'USDT'] = $i;
+		}
+		
+		$query = json_encode(array_keys($usdt_arr));
+		$result = wp_remote_get(self::BINANCE_API_URL.'?symbols='.$query, [
+			'redirection' => 0,
+			'user-agent' => 'Atlant Change php parser',
+			'sslverify' => 0,
+			'timeout' => 300
+		]);
+
+		if($result['response']['code'] != 200){
+			return false;
+		}
+		
+		$time_updated = current_datetime();
+		
+		$new_currencies = json_decode($result['body'], true);
+		
+		$currencies = [];
+		
+		$matex = new \Matex\Evaluator();
+		$matex->variables['rub'] = $rubble;
+		
+		$len = sizeof($new_currencies);
+		for($i=0; $i<$len; $i++){
+			$ind = $usdt_arr[$new_currencies[$i]['symbol']];
+			$code = $atlant_calculator_data[$ind]['code'];
+			$matex->variables['currency'] = (float)$new_currencies[$i]['price'];
+			$currency_data = [
+				'code' => $code,
+				'price' => (float)$new_currencies[$i]['price'],
+				'buy_price' => $matex->execute($atlant_calculator_data[$ind]['buy_formula']),
+				'send_price' => $matex->execute($atlant_calculator_data[$ind]['send_formula']),
+			];
+
+			$currencies[$code] = $currency_data;
+		}
+		
+		if($usdt_ind != -1){
+			$matex->variables['currency'] = (float)1;
+			$currency_data = [
+				'code' => 'USDT',
+				'price' => (float)1,
+				'buy_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['buy_formula']),
+				'send_price' => $matex->execute($atlant_calculator_data[$usdt_ind]['send_formula']),
+			];
+
+			$currencies['USDT'] = $currency_data;
+		}
+		
+		update_option('atlant_currencies_data', [
+			'updated_time' => $time_updated,
+			'currencies' => $currencies,
+		], false);
+		
+		return true;
+	}
+	
+	protected static function update_rubble(){
+		$rub_usd_data = get_option('atlant_rub_usd', ['updated_time' => new DateTimeImmutable('1970-01-01', wp_timezone()), 'price' => 1]);
+		$result = wp_remote_get(self::CBR_API_URL, [
+			'redirection' => 0,
+			'user-agent' => 'Atlant Change php parser',
+			'sslverify' => 0,
+			'timeout' => 300
+		]);
+
+		if($result['response']['code'] != 200){
+			return $rub_usd_data['price'];
+		}
+
+		$result = $result['body'];
+		$result = iconv('windows-1251', 'utf-8', $result);
+		
+		$matches = [];
+		preg_match('#<Valute[^>]*?ID=["\']R01235["\'][^>]*>(.*?)</Valute>#iu', $result, $matches);
+		if(!isset($matches[1])){
+			return $rub_usd_data['price'];
+		}
+		$result = $matches[1];
+		
+		preg_match('#<Nominal[^>]*>(.*?)</Nominal>#iu', $result, $matches);
+		if(!isset($matches[1])){
+			return $rub_usd_data['price'];
+		}
+		$nominal = absint($matches[1]);
+		
+		preg_match('#<Value[^>]*>(.*?)</Value>#iu', $result, $matches);
+		if(!isset($matches[1])){
+			return $rub_usd_data['price'];
+		}
+		$usd = (float)str_replace(',', '.', $matches[1]);
+		$rub_usd_data['updated_time'] = current_datetime();
+		$rub_usd_data['price'] = $usd / $nominal;
+		
+		update_option('atlant_rub_usd', $rub_usd_data, false);
+		
+		return $rub_usd_data['price'];
 	}
 }
 
@@ -269,6 +397,8 @@ add_action('switch_theme', 'atlant_deactivate_theme');
 function atlant_deactivate_theme($old_name){
 	wp_unschedule_hook('atlant_cron_update_crypto_currency');
 	delete_option('atlant_calculator_data');
+	delete_option('atlant_currencies_data');
+	delete_option('atlant_rub_usd');
 }
 
 //создаем страницу с настройками калькулятора
