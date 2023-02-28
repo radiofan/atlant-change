@@ -9,8 +9,6 @@ if(!function_exists('WP_Filesystem')){
 require_once get_template_directory().'/includes/rad-simple-walker-nav-class.php';
 require_once get_template_directory().'/includes/theme-functions.php';
 
-
-
 add_theme_support('automatic-feed-links');
 add_theme_support('title-tag');
 add_theme_support('admin-bar', ['callback' => '__return_false']);
@@ -110,7 +108,6 @@ function atlant_customizer_js_file(){
 // добавляем настройки темы 
 add_action('customize_register', 'atlant_customize_register');
 function atlant_customize_register(WP_Customize_Manager $wp_customize){
-	
 	function add_link_inputs(WP_Customize_Manager $wp_customize, string $setting, string $section, string $text, $transport='postMessage', $text_default='', $href_default='', $rel_default=''){
 
 		$wp_customize->add_setting($setting.'_text', [
@@ -219,3 +216,5 @@ function atlant_customize_register(WP_Customize_Manager $wp_customize){
 
 
 require_once get_template_directory().'/includes/news.php';
+require_once get_template_directory().'/includes/matex.php';
+require_once get_template_directory().'/includes/calculator.php';
