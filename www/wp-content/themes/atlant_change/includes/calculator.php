@@ -440,7 +440,8 @@ function atlant__change_calculator__block_render($args, $content){
 		<input type="text" name="value" class="calculator-form__value-input" value="0">
 		<div class="calculator-form__submit-section h5">
 			<div class="calculator-form__result">Вы заплатите: <span class="color--yellow">0&nbsp;₽</span></div>
-			<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">
+			<a href="#modal__to-bot" rel="modal:open" class="btn btn-submit">Обменять</a>
+			<!--<input type="submit" name="currency-exchange" value="Обменять" class="btn btn-submit">-->
 		</div>
 	</form>';
 	

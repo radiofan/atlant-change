@@ -210,6 +210,20 @@ function atlant_customize_register(WP_Customize_Manager $wp_customize){
 		]);
 
 		add_link_inputs($wp_customize, 'connection_link_2', $section, 'Связь ссылка 2', $transport, '@atlantch_bot');
+
+		$setting = 'modal_to_bot_content';
+		$wp_customize->add_setting($setting, [
+			'default' => 'Для того чтобы завершить обмен перейдите в Телеграм-бота',
+			//'sanitize_callback' => 'sanitize_text_field',
+			'transport' => $transport
+		]);
+		$wp_customize->add_control($setting, [
+			'section' => $section,
+			'label' => 'Контент всплывающего окна с переходом в ТГ',
+			'type' => 'text'
+		]);
+
+		add_link_inputs($wp_customize, 'modal_to_bot_link', $section, 'Кнопка К боту в всплывающем окне', $transport, 'К&nbsp;боту');
 	}
 }
 

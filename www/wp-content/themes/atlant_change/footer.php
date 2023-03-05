@@ -98,6 +98,19 @@ $theme_mods = get_theme_mods();
 	</form>
 </div>
 
+<div id="modal__to-bot" class="modal modal__to-bot">
+	<div class="modal__to-bot__container">
+		<div class="modal__to-bot__content">
+			<?php
+			if(!empty($theme_mods['modal_to_bot_content'])){
+				echo do_shortcode($theme_mods['modal_to_bot_content']);
+			}
+			?>
+		</div>
+		<?= get_link_html_or_empty('modal_to_bot_link', 'btn btn-green', $theme_mods) ?>
+	</div>
+</div>
+
 <?php
 echo file_get_contents(get_template_directory().'/assets/sprites.svg');
 
