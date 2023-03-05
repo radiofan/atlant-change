@@ -1,5 +1,7 @@
 <?php
 
+if(!defined('ABSPATH')) die();
+
 class atlant_currency_calculator{
 	
 	const CURRENCY_PAGE_NAME = 'atlant_currency_menu';

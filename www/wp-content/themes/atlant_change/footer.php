@@ -74,28 +74,11 @@ $theme_mods = get_theme_mods();
 </footer>
 
 <div id="modal__login" class="modal modal__login">
-	<form class="modal__login__container">
-		<h3>Авторизация</h3>
-		<input type="text" name="login" placeholder="Логин">
-		<input type="password" name="password" placeholder="Пароль">
-		<input type="text" name="code" placeholder="Кодовое слово">
-		<div class="modal__login__links">
-			<a href="javascript:void(0)">Забыли пароль</a>
-			<a href="#modal__signin" rel="modal:open">Регистрация</a>
-		</div>
-		<input type="submit" value="Вход" class="btn btn-green">
-	</form>
+	<?= do_shortcode('[atlant-login]') ?>
 </div>
 
 <div id="modal__signin" class="modal modal__signin">
-	<form class="modal__signin__container">
-		<h3>Регистрация</h3>
-		<input type="text" name="login" placeholder="Логин">
-		<input type="password" name="password" placeholder="Пароль">
-		<input type="password" name="password_check" placeholder="Подтвердите пароль">
-		<input type="text" name="code" placeholder="Кодовое слово">
-		<input type="submit" value="Зарегистрироватся" class="btn btn-submit">
-	</form>
+	<?= do_shortcode('[atlant-registration]') ?>
 </div>
 
 <div id="modal__to-bot" class="modal modal__to-bot">
