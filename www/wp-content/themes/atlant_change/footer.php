@@ -98,6 +98,8 @@ $theme_mods = get_theme_mods();
 echo file_get_contents(get_template_directory().'/assets/sprites.svg');
 
 wp_footer();
+
+//todo ссылки на личный кабинет
 ?>
 </body>
 </html>

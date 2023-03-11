@@ -188,3 +188,27 @@ select{
 		border-left-color:@cYellow;
 	}
 }
+
+.star-rating{
+	display:inline-flex;
+	align-items: center;
+	
+	&:not(.disabled) &__star{
+		cursor:pointer;
+	}
+	
+	&__container &__star{
+		.f(@fs24, 1);
+		color:@cGray;
+		width: 30px;
+		height: 24px;
+		
+		&--active{
+			color:@cYellow;
+		}
+	}
+	
+	&__container{
+		display:flex;
+	}
+}

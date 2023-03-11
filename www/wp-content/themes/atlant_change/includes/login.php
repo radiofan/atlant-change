@@ -4,7 +4,7 @@ if(!defined('ABSPATH')) die();
 add_shortcode('atlant-login', 'atlant__login__block_render');
 function atlant__login__block_render($args, $content){
 	if(is_user_logged_in()){
-		//return '';//todo
+		return '';
 	}
 	
 	$redirect = '';
@@ -83,7 +83,7 @@ function atlant_login_ajax(){
 add_shortcode('atlant-registration', 'atlant__registration__block_render');
 function atlant__registration__block_render($args, $content){
 	if(is_user_logged_in()){
-		//return '';//todo
+		return '';
 	}
 
 	$redirect = '';
@@ -140,4 +140,20 @@ function atlant_registration_ajax(){
 		'error' => is_wp_error($errors) ? $errors->get_error_message() : 'Подтверждение регистрации отправлено на ваш email.',
 	]);
 	die();
+}
+
+add_action('admin_init', 'atlant_close_admin_for_users');
+function atlant_close_admin_for_users(){
+	if(!current_user_can('edit_posts') && !defined('DOING_AJAX')){
+		status_header( 404 );
+		nocache_headers();
+		exit();
+	}
+}
+
+add_action('init', 'atlant_hide_bar_for_users');
+function atlant_hide_bar_for_users(){
+	if(!current_user_can('edit_posts')){
+		add_filter('show_admin_bar', '__return_false');
+	}
 }

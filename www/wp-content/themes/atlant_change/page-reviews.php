@@ -134,24 +134,7 @@ get_header();
 	</div>
 </section>
 <section class="feedback-review-form container">
-	<h2>Оставить отзыв</h2>
-	<form class="feedback-review-form__container">
-		<div class="feedback-review-form__input-block">
-			<input type="text" name="name" class="feedback-review-form__input" placeholder="Имя">
-			<input type="email" name="email" class="feedback-review-form__input" placeholder="Email">
-		</div>
-		<div class="feedback-review-form__textarea-block">
-			<textarea class="feedback-review-form__textarea" name="review" placeholder="Ваш отзыв"></textarea>
-			<div class="feedback-review-form__captcha"></div>
-		</div>
-		<div class="feedback-review-form__submit-block">
-			<input type="submit" value="Отправить" class="btn btn-submit">
-			<div class="feedback-review-form__privacy">
-				Нажимая кнопку, вы соглашаетесь с<br>
-				правилами обработки персональных данных
-			</div>
-		</div>
-	</form>
+	<?= do_shortcode('[atlant-review-form header="Оставить отзыв"]Нажимая кнопку, вы соглашаетесь с<br>правилами обработки персональных данных[/atlant-review-form]') ?>
 </section>
 <?php
 get_footer();

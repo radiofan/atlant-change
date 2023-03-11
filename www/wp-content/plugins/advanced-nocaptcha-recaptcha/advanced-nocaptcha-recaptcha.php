@@ -10,7 +10,7 @@
  * Plugin Name: CAPTCHA 4WP
  * Version:     7.1.1
  * Plugin URI:  https://www.wpwhitesecurity.com/wordpress-plugins/captcha-plugin-wordpress/
- * Description: Easily add any type of CAPTCHA (such as noCaptcha or invisible Captcha) on any website form, including login pages, comments and password reset forms, and also forms by third party plugins such as Contact Form 7, WooCommerce & BuddyPress.
+ * Description: RADIOFAN: ИЗМЕНИЛ ПЛАГИН для ATLANT CHANGE, НЕ ОБНОВЛЯТЬ!!! Выпилил рекламу, оригиналный плагин позволял отправлять формы без результатов прохождения капчи, даже если она требовалась для прохождения. Easily add any type of CAPTCHA (such as noCaptcha or invisible Captcha) on any website form, including login pages, comments and password reset forms, and also forms by third party plugins such as Contact Form 7, WooCommerce & BuddyPress.
  * Author:      WP White Security
  * Author URI:  https://www.wpwhitesecurity.com/
  * Text Domain: advanced-nocaptcha-recaptcha

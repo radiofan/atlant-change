@@ -1,6 +1,8 @@
 jQuery(document).ready(function($){
 	
-	$('body').on('click.spoiler', '.spoiler__header', function(e){
+	let $body = $('body');
+
+	$body.on('click.spoiler', '.spoiler__header', function(e){
 		let $spoiler = $(this).parent('.spoiler');
 		
 		if(!$spoiler)
@@ -18,7 +20,7 @@ jQuery(document).ready(function($){
 		});
 	});
 
-	$('body').on('click.collapse','*[data-toggle="collapse"]', function(e){
+	$body.on('click.collapse','*[data-toggle="collapse"]', function(e){
 		let $this = $(this);
 		let $toggle_e = $($this.data('target'));
 		
@@ -49,7 +51,63 @@ jQuery(document).ready(function($){
 		}
 	});
 	
-	$('body').on('submit.login', 'form.form-login', function(e){
+	//перекрашивает звезды
+	function star_rating_draw($star_rating, rating){
+		if(rating < 0){
+			rating = 0;
+		}
+		if(rating > 5){
+			rating = 5;
+		}
+		
+		if(rating == 0){
+			$star_rating.children('.star-rating__container').children('.star-rating__star').removeClass('star-rating__star--active');
+		}else if(rating == 5){
+			$star_rating.children('.star-rating__container').children('.star-rating__star').addClass('star-rating__star--active');
+		}else{
+			let $border = $star_rating.children('.star-rating__container').children('.star-rating__star').eq(rating);
+			$border.prevAll().addClass('star-rating__star--active');
+			$border.removeClass('star-rating__star--active');
+			$border.nextAll().removeClass('star-rating__star--active');
+		}
+	}
+	$('.star-rating').each(function(ind, elem){
+		let $this = $(this);
+		let rating = +$this.children('input[name="meta-rating"]').val();
+		if(rating < 0){
+			rating = 0;
+			$this.children('input[name="meta-rating"]').val(rating);
+		}
+		if(rating > 5){
+			rating = 5;
+			$this.children('input[name="meta-rating"]').val(rating);
+		}
+
+		star_rating_draw($this, rating);
+	});
+	$body.on('click.star_rating', '.star-rating:not(.disabled) .star-rating__star', function(e){
+		let $star = $(this);
+		let ind = $star.index();
+		let $star_rating = $star.closest('.star-rating');
+		$star_rating.children('input[name="meta-rating"]').val(ind+1);
+
+		star_rating_draw($star_rating, ind+1);
+	});
+	$body.on('mouseenter.star_rating', '.star-rating:not(.disabled) .star-rating__star', function(e){
+		let $star = $(this);
+		let ind = $star.index();
+		let $star_rating = $star.closest('.star-rating');
+
+		star_rating_draw($star_rating, ind+1);
+	});
+	$body.on('mouseleave.star_rating', '.star-rating:not(.disabled) .star-rating__star', function(e){
+		let $star_rating = $(this).closest('.star-rating');
+		let rating = $star_rating.children('input[name="meta-rating"]').val();
+
+		star_rating_draw($star_rating, rating);
+	});
+
+	$body.on('submit.login', 'form.form-login', function(e){
 		
 		e.preventDefault();
 		let $form = $(this);
@@ -115,7 +173,7 @@ jQuery(document).ready(function($){
 
 	});
 
-	$('body').on('submit.signin', 'form.form-signin', function(e){
+	$body.on('submit.signin', 'form.form-signin', function(e){
 
 		e.preventDefault();
 		let $form = $(this);
@@ -169,6 +227,49 @@ jQuery(document).ready(function($){
 			}
 		});
 
+	});
+
+	$body.on('submit.review', 'form.form-review', function(e){
+		let $form = $(this);
+		$form.find('.form-error').remove();
+		let data = {
+			'author': $form.find('*[name="author"]').val().trim(),
+			'meta-rating': +$form.find('*[name="meta-rating"]').val(),
+			'comment': $form.find('*[name="comment"]').val().trim()
+		};
+		
+		let error = '';
+		
+		if(!error && !data.author){
+			error = 'Поле Имя должно быть заполнено';
+		}
+
+		if(!error && (+data['meta-rating'] <= 0 || +data['meta-rating'] > 5)){
+			error = 'Требуется установить рейтинг отзыва';
+		}
+
+		if(!error && !data['comment']){
+			error = 'Поле Комментарий должно быть заполнено';
+		}
+
+		let $captcha = $form.find('.c4wp_captcha_field');
+		if($captcha){
+			let id = $captcha.children().attr('id');
+			id = +id.replace('c4wp_captcha_field_', '') - 1;
+			data['g-recaptcha-response'] = grecaptcha.getResponse(id);
+			
+			if(!error && !data['g-recaptcha-response']){
+				error = 'Требуется пройти капчу';
+			}
+		}
+		
+		if(error){
+			e.preventDefault();
+			
+			$form.find('.feedback-review-form__submit-block').before('<p class="form-error" style="display:none">'+error+'</p>');
+			$form.find('.form-error').slideDown(200);
+		}
+		
 	});
 	
 });
