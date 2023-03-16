@@ -32,6 +32,7 @@
 
 
 		position:relative;
+		width: 100%;
 
 		@media @lessMD{
 			grid-template-columns: 1fr;
@@ -44,6 +45,35 @@
 				display:flex;
 			}
 		}
+
+		@media @moreSM{
+			&--yellow-ring::before{
+				content:"";
+				background-color:@cYellow;
+				width: 125px;
+				height: 125px;
+				position:absolute;
+				clip-path:circle(50% at 50% 50%);
+				z-index: -2;
+
+				left: 50%;
+				top: 50%;
+				.transform(translate(-50%, -50%));
+			}
+			&--yellow-ring::after{
+				content:"";
+				background-color:@cWhite;
+				width: 42px;
+				height: 42px;
+				position:absolute;
+				clip-path:circle(50% at 50% 50%);
+				z-index: -2;
+
+				left: 50%;
+				top: 50%;
+				.transform(translate(-50%, -50%));
+			}
+		}
 	}
 	
 	&__pagination{
@@ -52,13 +82,13 @@
 		justify-content:center;
 		column-gap:25px;
 
-		& > button{
+		& > a{
 			.h4;
 			padding:0;
 		}
 
 		@media @lessMD{
-			display:none;
+			.h5;
 		}
 	}
 	

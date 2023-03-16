@@ -106,6 +106,34 @@ jQuery(document).ready(function($){
 
 		star_rating_draw($star_rating, rating);
 	});
+	
+	$body.on('click.slider', '.feedback-slider .feedback-slider__button', function(e){
+		let $this = $(this);
+		if($this.hasClass('disabled') || $this.prop('disabled')){
+			return;
+		}
+		
+		let $slider = $this.closest('.feedback-slider');
+		let $container = $slider.children('.feedback-slider__content');
+		let $slides = $container.children('.feedback-card');
+		let $current_slide = $slides.filter('.feedback-card:visible');
+		let current_slide_index = $current_slide.index();
+		let current_page = +$slider.data('commentPage');
+		
+		if($this.hasClass('feedback-slider__left-arrow')){
+			if(current_slide_index > 0){
+				$current_slide.fadeOut(150, function(){
+					$slides.eq(current_slide_index-1).fadeIn(150);
+				});
+			}
+		}else{
+			if(current_slide_index+1 < $slides.length){
+				$current_slide.fadeOut(150, function(){
+					$slides.eq(current_slide_index+1).fadeIn(150);
+				});
+			}
+		}
+	});
 
 	$body.on('submit.login', 'form.form-login', function(e){
 		

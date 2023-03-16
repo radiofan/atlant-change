@@ -33,7 +33,7 @@ https://wp-kama.ru/id_89/uslovnyie-tegi-v-wordpress-i-vse-chto-s-nimi-svyazano.h
 https://wp-kama.ru/function/add_theme_support#starter-content
 https://wp-kama.ru/handbook/theme/customize-api
 
-[atlant-change-calculator]
++[atlant-change-calculator]
 +[atlant-change-currency]
 [atlant-reviews-view max="4" pagination="0" yellow-ring="1"]
 +[atlant-news max="2"]
@@ -41,9 +41,9 @@ https://wp-kama.ru/handbook/theme/customize-api
 
 
 2000 - 2 слайдера
-1000 - оставление отзыва
-500 - капча
++1000 - оставление отзыва
++500 - капча
 500 - поделиться
-1000 - калькулятор//идиот
++1000 - калькулятор//идиот
 +2000 - изменение текстов
 +500 - подгрузка новостей и доп
