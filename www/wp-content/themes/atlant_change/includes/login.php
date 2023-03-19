@@ -145,8 +145,14 @@ function atlant_registration_ajax(){
 add_action('admin_init', 'atlant_close_admin_for_users');
 function atlant_close_admin_for_users(){
 	if(!current_user_can('edit_posts') && !defined('DOING_AJAX')){
+		global $wp_query;
+		$wp_query->set_404();
 		status_header( 404 );
 		nocache_headers();
+		show_admin_bar(false);
+		add_filter('show_admin_bar', '__return_false');
+		wp_add_inline_style('dashicons', '#wpadminbar {display: none !important;}');
+		require get_404_template();
 		exit();
 	}
 }
@@ -154,6 +160,23 @@ function atlant_close_admin_for_users(){
 add_action('init', 'atlant_hide_bar_for_users');
 function atlant_hide_bar_for_users(){
 	if(!current_user_can('edit_posts')){
+		show_admin_bar(false);
 		add_filter('show_admin_bar', '__return_false');
 	}
+}
+
+add_filter('login_redirect', 'atlant_redirect_login', 10, 3);
+/**
+ * @param $redirect_to
+ * @param $requested_redirect_to
+ * @param WP_User|WP_Error $user
+ */
+function atlant_redirect_login($redirect_to, $requested_redirect_to, $user){
+	if(strpos($redirect_to, 'wp-admin') !== false){
+		if(!is_wp_error($user) && $user->has_cap('edit_posts')){
+			return $redirect_to;
+		}
+		return '/';
+	}
+	return $redirect_to;
 }

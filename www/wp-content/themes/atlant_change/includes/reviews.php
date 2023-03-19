@@ -1,4 +1,6 @@
 <?php
+if(!defined('ABSPATH')) die();
+
 add_shortcode('atlant-review-form', 'atlant__review_form__block_render');
 function atlant__review_form__block_render($args, $content){
 
@@ -8,12 +10,12 @@ function atlant__review_form__block_render($args, $content){
 	}
 
 	if(!is_user_logged_in()){
-		$html .= '<p>Только зарегистрированные пользователи могут оставлять отзывы.</p>';
+		$html .= '<br><p>Только зарегистрированные пользователи могут оставлять отзывы.</p>';
 		return $html;
 	}
 
 	if(!comments_open()){
-		$html .= '<p>Отзывы отключены</p>';
+		$html .= '<br><p>Отзывы отключены</p>';
 		return $html;
 	}
 
@@ -56,6 +58,7 @@ function atlant__review_form__block_render($args, $content){
 		</div>
 		<div class="feedback-review-form__submit-block">
 			<input type="hidden" name="comment_post_ID" value="'.$id.'">
+			<input type="hidden" name="redirect_to" value="/account/">
 			<input type="hidden" name="comment_parent" value="0">
 			<input type="submit" value="Отправить" class="btn btn-submit">
 			'.$privacy.'
@@ -238,6 +241,79 @@ function atlant__reviews_view__block_render($args, $content){
 		$html .= '
 	</div>';
 	}
+
+	return $html;
+}
+
+
+add_shortcode('atlant-my-reviews', 'atlant__my_reviews__block_render');
+function atlant__my_reviews__block_render($args, $content){
+	
+	if(!is_user_logged_in()){
+		return '';
+	}
+
+	$class = '';
+	if(!empty($args['class'])){
+		$class = ' '.esc_attr($args['class']);
+	}
+
+	$comments_c = get_comments([
+		'author__in' => get_current_user_id(),
+		'post_status' => 'publish',
+		'status' => '',
+		'count' => true,
+	]);
+
+
+	$comments = get_comments([
+		'author__in' => get_current_user_id(),
+		'post_status' => 'publish',
+		'status' => '',
+	]);
+
+
+	$html = '
+	<div class="feedback-slider'.$class.'">
+		<button class="btn-empty feedback-slider__button feedback-slider__left-arrow icon icon-left-arrow"></button>
+		<div class="feedback-slider__content feedback-reviews-block__feedback-container">';
+
+	$len = sizeof($comments);
+	for($i=0; $i<$len; $i++){
+		$rating = absint(get_comment_meta($comments[$i]->comment_ID, 'rating', 1));
+		$url = add_query_arg(
+			[
+				'action' => 'atlant_delete_my_comment',
+				'c' => $comments[$i]->comment_ID,
+				'_wpnonce' => wp_create_nonce('nonce_atlant_delete_my_comment_'.$comments[$i]->comment_ID),
+			],
+			''
+		);
+		$html .= '
+			<div class="feedback-card" id="comment-'.$comments[$i]->comment_ID.'">
+				<div class="feedback-card__links">
+					<span>№'.$comments[$i]->comment_ID.'</span>
+					'.($comments[$i]->comment_approved ? '<b class="color--cyan">Одобрен</b>' : '<span class="color--gray">Неодобрен</span>').'
+					<a class="link" style="float:right" href="'.$url.'" onclick="return confirm(\'Вы действительно хоите удалить комментарий №'.$comments[$i]->comment_ID.'?\')">Удалить</a>
+				</div>
+				<div class="feedback-card__content">
+					<div class="feedback-card__header">
+						<span>'.esc_html($comments[$i]->comment_author).'</span>
+						<span class="feedback-card__rating"><span class="color--yellow">'.$rating.'</span>/5</span>
+					</div>
+					<div class="feedback-card__description">
+						'.esc_html($comments[$i]->comment_content).'
+					</div>
+				</div>
+				<div class="feedback-card__date">'.get_comment_date('d F Y H:m', $comments[$i]).'</div>
+			</div>';
+	}
+
+	$html .= '
+
+		</div>
+		<button class="btn-empty feedback-slider__button feedback-slider__right-arrow icon icon-right-arrow"></button>
+	</div>';
 
 	return $html;
 }

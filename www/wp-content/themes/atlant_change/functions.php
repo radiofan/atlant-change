@@ -231,5 +231,6 @@ function atlant_customize_register(WP_Customize_Manager $wp_customize){
 require_once get_template_directory().'/includes/login.php';
 require_once get_template_directory().'/includes/reviews.php';
 require_once get_template_directory().'/includes/news.php';
+require_once get_template_directory().'/includes/account.php';
 require_once get_template_directory().'/includes/matex.php';
 require_once get_template_directory().'/includes/calculator.php';

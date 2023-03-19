@@ -51,10 +51,8 @@ if(!defined('ABSPATH')) die();
 				</div>
 				<?php
 				endif;
+				echo do_shortcode('[atlant-account-link class="navbar-top__addition-item navbar-top__account-button"]Личный кабинет[/atlant-account-link]');
 				?>
-				<a href="#modal__login" rel="modal:open" class="navbar-top__addition-item navbar-top__account-button">
-					Личный кабинет
-				</a>
 			</div>
 		</div>
 		<button type="button" class="navbar-top__toggle collapsed" data-toggle="collapse" data-target="#menu-top" aria-expanded="false">
@@ -68,11 +66,12 @@ if(!defined('ABSPATH')) die();
 <main>
 	
 <?php
-if(!is_front_page() && !is_single()):
+if(!is_front_page() && !is_single() && !is_404()):
 ?>
 	
 	<div class="page-header container">
 		<h3><?php single_post_title(); ?></h3>
+		<?= (is_user_logged_in() ? '<a class="link" href="'.wp_logout_url($_SERVER['REQUEST_URI']).'">Выйти</a>' : '') ?>
 	</div>
 
 <?php
