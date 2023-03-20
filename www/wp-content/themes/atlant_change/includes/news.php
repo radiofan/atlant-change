@@ -16,14 +16,17 @@ function atlant_loadmore_ajax(){
 	global $post;
 
 	$need_posts = get_posts($args);
-
+	$ret = [];
 	foreach($need_posts as $post){
 		setup_postdata($post);
+
+		ob_start();
 		get_template_part('news-template', null, ['need_link' => true]);
+		$ret[] = ['id' => $post->ID, 'html' => ob_get_clean()];
 	}
 	wp_reset_postdata();
 
-	die();
+	die(json_encode($ret));
 }
 
 // обработчик подзагрузки новостей

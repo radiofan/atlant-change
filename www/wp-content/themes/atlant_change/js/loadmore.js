@@ -23,7 +23,7 @@ jQuery(function($){
 			$.ajax({
 				type : 'POST',
 				url : atlant_loadmore.ajax_url,
-				dataType:'html',
+				dataType:'json',
 				data : {
 					paged : current_page,
 					action : 'atlant_loadmore'
@@ -31,7 +31,10 @@ jQuery(function($){
 				
 				success:function(data){
 					current_page++;
-					$loadmore.before(data);
+					for(let i in data){
+						$loadmore.before(data[i].html);
+						Ya.share2('post-'+data[i].id+' .ya-share2');
+					}
 					$loadmore.html('');
 				},
 				error: function(jqXHR, exception){

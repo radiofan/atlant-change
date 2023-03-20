@@ -78,7 +78,7 @@ function atlant_action__atlant_delete_my_comment(){
 	}
 
 	wp_delete_comment($comment);
-	if(!defined(DOING_AJAX)){
+	if(!defined('DOING_AJAX')){
 		$redir = home_url($_SERVER['REQUEST_URI']);
 		$redir = remove_query_arg(['action', 'c', '_wpnonce'], $redir);
 		wp_safe_redirect($redir);
@@ -111,7 +111,7 @@ function atlant_action__atlant_change_user_name(){
 		'nickname' => $nickname,
 	]);
 
-	if(!defined(DOING_AJAX)){
+	if(!defined('DOING_AJAX')){
 		$redir = home_url(explode('?', $_SERVER['REQUEST_URI'])[0].'#change-name');
 		wp_safe_redirect($redir);
 	}

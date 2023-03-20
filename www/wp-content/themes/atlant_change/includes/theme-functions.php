@@ -37,11 +37,19 @@ function get_link_html_or_empty(string $name, string $class, array $args=[]): st
 }
 
 function get_share_button(){
-	return '
-	<button class="news-article-block__btn-share">Поделиться
-		<svg class="news-article-block__btn-share__icon">
-			<use xlink:href="#share"></use>
-		</svg>
-	</button>
-	';
+	global $post;
+	$html = '
+	<div
+		class="ya-share2"
+		data-curtain
+		data-use-links
+		data-limit="0"
+		data-more-button-type="long"
+		data-description="'.esc_attr(get_the_excerpt()).'"
+		'.(has_post_thumbnail() ? 'data-image="'.get_the_post_thumbnail_url($post, 'medium').'"' : '').'
+		data-title="'.esc_attr(get_the_title()).'"
+		data-url="'.esc_attr(get_the_permalink()).'"
+		data-services="vkontakte,odnoklassniki,telegram,twitter,whatsapp"
+	></div>';
+	return $html;
 }
