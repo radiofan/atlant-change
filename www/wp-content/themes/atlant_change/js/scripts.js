@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
 		}
 		
 		let redirect = $form.find('*[name="redirect_to"]');
-		if(redirect){
+		if(redirect.length){
 			redirect = redirect.val();
 		}else{
 			redirect = '';
@@ -223,7 +223,7 @@ jQuery(document).ready(function($){
 		}
 		
 		let $captcha = $form.find('.c4wp_captcha_field');
-		if($captcha){
+		if($captcha.length){
 			let id = $captcha.children().attr('id');
 			id = +id.replace('c4wp_captcha_field_', '') - 1;
 			form_data['g-recaptcha-response'] = grecaptcha.getResponse(id);
@@ -281,7 +281,7 @@ jQuery(document).ready(function($){
 		}
 
 		let $captcha = $form.find('.c4wp_captcha_field');
-		if($captcha){
+		if($captcha.length){
 			let id = $captcha.children().attr('id');
 			id = +id.replace('c4wp_captcha_field_', '') - 1;
 			data['g-recaptcha-response'] = grecaptcha.getResponse(id);

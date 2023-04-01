@@ -41,7 +41,7 @@ require_once 'header.php';
 		<input type="password" name="password" placeholder="Пароль">
 		<input type="password" name="password_check" placeholder="Подтвердите пароль">
 		<input type="text" name="code" placeholder="Кодовое слово">
-		<input type="submit" value="Зарегистрироватся" class="btn btn-submit">
+		<input type="submit" value="Зарегистрироваться" class="btn btn-submit">
 	</form>
 </div>
 

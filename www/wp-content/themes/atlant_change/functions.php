@@ -35,6 +35,9 @@ function remove_thumbnail_dimensions($html, $post_id, $post_image_id){
 	return preg_replace('/(width|height)=\"\d*\"\s/', '', $html);
 }
 
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wlwmanifest_link');
+
 //подключаем скрипты на фронт
 add_action('wp_enqueue_scripts', 'atlant_change_scripts');
 function atlant_change_scripts(){

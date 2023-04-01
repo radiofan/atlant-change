@@ -100,7 +100,7 @@ function atlant__registration__block_render($args, $content){
 	}
 
 	$html .= '
-		<input type="submit" value="Зарегистрироватся" class="btn btn-submit">
+		<input type="submit" value="Зарегистрироваться" class="btn btn-submit">
 	</form>';
 
 	return $html;
